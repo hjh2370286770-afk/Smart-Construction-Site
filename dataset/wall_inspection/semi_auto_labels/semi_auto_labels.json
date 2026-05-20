@@ -1,0 +1,8228 @@
+{
+  "created_at": "2026-04-01T18:03:55.861598",
+  "total_frames": 96,
+  "suggestions": [
+    {
+      "filename": "JHMH2405004008_20260331_132219_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              443,
+              7,
+              86
+            ],
+            "confidence": 0.9,
+            "notes": "长度:86px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              126,
+              6,
+              124
+            ],
+            "confidence": 0.9,
+            "notes": "长度:124px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1057,
+              384,
+              18,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 15
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_132219_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              439,
+              7,
+              86
+            ],
+            "confidence": 0.9,
+            "notes": "长度:86px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              135,
+              6,
+              77
+            ],
+            "confidence": 0.9,
+            "notes": "长度:77px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1049,
+              376,
+              21,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 53
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_132219_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              449,
+              6,
+              68
+            ],
+            "confidence": 0.9,
+            "notes": "长度:68px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              132,
+              6,
+              83
+            ],
+            "confidence": 0.9,
+            "notes": "长度:83px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              386,
+              364,
+              29,
+              7
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 56
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_132219_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133940_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              514,
+              97,
+              26,
+              117
+            ],
+            "confidence": 0.4499998269231435,
+            "notes": "长度:117px, 宽度:26px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1142,
+              592,
+              10,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1013,
+              485,
+              11,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1136,
+              465,
+              80,
+              122
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              384,
+              353,
+              138,
+              52
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              565,
+              288,
+              13,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              558,
+              209,
+              25,
+              73
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              36,
+              0,
+              106,
+              104
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 2
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 8 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133940_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              1149,
+              501,
+              63,
+              77
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              176,
+              496,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1145,
+              467,
+              38,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              379,
+              353,
+              178,
+              58
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              562,
+              240,
+              11,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              288,
+              224,
+              16,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              100,
+              205,
+              13,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              137,
+              192,
+              46,
+              80
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              72,
+              0,
+              76,
+              172
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 9 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133940_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              1136,
+              479,
+              73,
+              109
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              641,
+              358,
+              67,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              460,
+              358,
+              92,
+              34
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              376,
+              352,
+              82,
+              39
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              572,
+              336,
+              26,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              321,
+              274,
+              23,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              337,
+              246,
+              38,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              464,
+              208,
+              15,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              52,
+              32,
+              14,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              48,
+              0,
+              50,
+              148
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 10 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133940_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              502,
+              78,
+              45,
+              191
+            ],
+            "confidence": 0.4244443501234777,
+            "notes": "长度:191px, 宽度:45px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1127,
+              466,
+              83,
+              121
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              640,
+              358,
+              52,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              373,
+              352,
+              179,
+              50
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              570,
+              336,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              408,
+              310,
+              16,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              322,
+              273,
+              22,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              562,
+              256,
+              16,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              360,
+              250,
+              16,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              32,
+              0,
+              66,
+              148
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 10 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133957_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              545,
+              114,
+              3,
+              26
+            ],
+            "confidence": 0.8666637777874074,
+            "notes": "长度:26px, 宽度:3px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              172,
+              493,
+              22,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1128,
+              465,
+              68,
+              109
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              366,
+              350,
+              190,
+              57
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              401,
+              301,
+              25,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              566,
+              282,
+              9,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              386,
+              272,
+              14,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 3
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133957_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              1179,
+              498,
+              22,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              173,
+              493,
+              21,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1116,
+              465,
+              74,
+              110
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              364,
+              351,
+              192,
+              58
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              398,
+              304,
+              26,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              560,
+              255,
+              18,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 6 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133957_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              562,
+              73,
+              4,
+              17
+            ],
+            "confidence": 0.42499893750265627,
+            "notes": "长度:17px, 宽度:4px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              992,
+              483,
+              22,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1089,
+              464,
+              117,
+              160
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              414,
+              366,
+              136,
+              40
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              353,
+              353,
+              55,
+              33
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              559,
+              272,
+              19,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              336,
+              228,
+              22,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              64,
+              52,
+              22,
+              34
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              84,
+              0,
+              13,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 9 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_133957_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              703,
+              347,
+              82,
+              20
+            ],
+            "confidence": 0.40999979500010253,
+            "notes": "长度:82px, 宽度:20px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              97,
+              592,
+              19,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1088,
+              554,
+              64,
+              50
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1136,
+              518,
+              20,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1166,
+              490,
+              18,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              172,
+              490,
+              28,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1074,
+              462,
+              68,
+              94
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              350,
+              353,
+              58,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              416,
+              352,
+              138,
+              51
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              569,
+              270,
+              15,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              330,
+              227,
+              34,
+              37
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 11 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_134013_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              433,
+              682,
+              11,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              30,
+              644,
+              10,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              63,
+              616,
+              161,
+              104
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              191,
+              594,
+              41,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              240,
+              592,
+              8,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              213,
+              527,
+              43,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              520,
+              20,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              18,
+              508,
+              46,
+              60
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              82,
+              480,
+              30,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              194,
+              463,
+              26,
+              55
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              444,
+              40,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              112,
+              430,
+              32,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              286,
+              96,
+              70
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              890,
+              235,
+              24,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              142,
+              224,
+              14,
+              37
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              82,
+              130,
+              14,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              80,
+              96,
+              30,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              82,
+              16,
+              104,
+              184
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              37,
+              0,
+              17,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 19 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_134013_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              65,
+              660,
+              27,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              81,
+              608,
+              15,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              310,
+              22,
+              9
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              96,
+              144,
+              44,
+              75
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              109,
+              102,
+              19,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 26
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_134013_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              255,
+              0,
+              39,
+              161
+            ],
+            "confidence": 0.41282040696912636,
+            "notes": "长度:161px, 宽度:39px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              335,
+              672,
+              41,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              64,
+              672,
+              40,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              252,
+              671,
+              62,
+              49
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              204,
+              671,
+              44,
+              43
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              353,
+              609,
+              23,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              303,
+              608,
+              29,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              255,
+              608,
+              33,
+              40
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              159,
+              607,
+              95,
+              59
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              369,
+              532,
+              15,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              50,
+              498,
+              14,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              49,
+              495,
+              103,
+              155
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              143,
+              480,
+              36,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              86,
+              462,
+              34,
+              10
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              85,
+              431,
+              50,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              36,
+              194,
+              15,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 16 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_134013_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              192,
+              702,
+              35,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              60,
+              578,
+              86,
+              142
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              41,
+              498,
+              20,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              488,
+              6,
+              60
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              640,
+              127,
+              16,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 22
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135014_t02s.jpg",
+      "suggested_labels": {
+        "phase": "preparation",
+        "wall_status": "meshed",
+        "equipment_status": "idle",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              576,
+              704,
+              38,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              432,
+              672,
+              80,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              721,
+              657,
+              27,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              272,
+              640,
+              26,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              608,
+              624,
+              17,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              534,
+              616,
+              10,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              332,
+              608,
+              131,
+              6
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              656,
+              576,
+              32,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              479,
+              558,
+              125,
+              76
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              288,
+              527,
+              58,
+              75
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              579,
+              516,
+              21,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              192,
+              512,
+              58,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              480,
+              497,
+              28,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              350,
+              480,
+              129,
+              88
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              288,
+              448,
+              72,
+              58
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              988,
+              447,
+              30,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              112,
+              432,
+              26,
+              40
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1071,
+              416,
+              41,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              232,
+              416,
+              16,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              272,
+              400,
+              26,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              191,
+              400,
+              43,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              144,
+              396,
+              26,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              953,
+              383,
+              57,
+              54
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              804,
+              358,
+              34,
+              10
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              432,
+              354,
+              122,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1075,
+              337,
+              27,
+              39
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              898,
+              321,
+              22,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1094,
+              318,
+              48,
+              50
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              609,
+              267,
+              67,
+              80
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              783,
+              256,
+              18,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1052,
+              254,
+              38,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              933,
+              247,
+              131,
+              102
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              897,
+              240,
+              46,
+              47
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              919,
+              172,
+              21,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              908,
+              155,
+              19,
+              43
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              127,
+              144,
+              37,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              881,
+              74,
+              21,
+              37
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              827,
+              63,
+              14,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              130,
+              30,
+              80,
+              162
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              878,
+              0,
+              292,
+              264
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 40 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135014_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              979,
+              435,
+              37,
+              35
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1072,
+              419,
+              26,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              906,
+              326,
+              20,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1029,
+              320,
+              26,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              940,
+              274,
+              38,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              608,
+              271,
+              26,
+              52
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1040,
+              251,
+              23,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              894,
+              237,
+              48,
+              49
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              977,
+              191,
+              27,
+              13
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              904,
+              171,
+              32,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1051,
+              163,
+              20,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              872,
+              142,
+              27,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              754,
+              106,
+              45,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              800,
+              105,
+              28,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1058,
+              98,
+              24,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              880,
+              88,
+              21,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              791,
+              53,
+              55,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              968,
+              0,
+              198,
+              209
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              722,
+              0,
+              30,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 19 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135014_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              359,
+              7,
+              49
+            ],
+            "confidence": 0.6999990000014286,
+            "notes": "长度:49px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1056,
+              545,
+              42,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1118,
+              526,
+              27,
+              35
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1086,
+              511,
+              28,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1167,
+              464,
+              13,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1120,
+              431,
+              40,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              934,
+              412,
+              66,
+              60
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              918,
+              382,
+              42,
+              10
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1020,
+              380,
+              100,
+              100
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1169,
+              375,
+              40,
+              64
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              854,
+              365,
+              25,
+              13
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              880,
+              354,
+              54,
+              54
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              717,
+              352,
+              37,
+              8
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1200,
+              335,
+              19,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1200,
+              288,
+              28,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              832,
+              272,
+              58,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              608,
+              267,
+              58,
+              73
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1216,
+              256,
+              16,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              890,
+              248,
+              38,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              860,
+              218,
+              32,
+              46
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              858,
+              202,
+              17,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1200,
+              191,
+              26,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              703,
+              180,
+              27,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              804,
+              176,
+              38,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              624,
+              176,
+              47,
+              40
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              975,
+              159,
+              75,
+              121
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              730,
+              158,
+              110,
+              74
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              86,
+              127,
+              29,
+              41
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1196,
+              94,
+              40,
+              78
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              703,
+              80,
+              37,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              114,
+              67,
+              8,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1180,
+              63,
+              34,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              751,
+              47,
+              203,
+              135
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1154,
+              0,
+              51,
+              46
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 34 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135014_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1271,
+              446,
+              9,
+              85
+            ],
+            "confidence": 0.9,
+            "notes": "长度:85px, 宽度:9px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1091,
+              42,
+              57,
+              14
+            ],
+            "confidence": 0.4071425663267384,
+            "notes": "长度:57px, 宽度:14px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              838,
+              272,
+              42,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              605,
+              269,
+              63,
+              60
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              828,
+              198,
+              51,
+              66
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              625,
+              181,
+              27,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              692,
+              180,
+              24,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              784,
+              175,
+              42,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              772,
+              68,
+              34,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              90,
+              34,
+              62,
+              145
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              756,
+              32,
+              178,
+              140
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 11 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135618_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              170,
+              239,
+              7,
+              29
+            ],
+            "confidence": 0.4142851224498251,
+            "notes": "长度:29px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              401,
+              358,
+              173,
+              46
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              52,
+              34,
+              76,
+              126
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 4
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135618_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              81,
+              610,
+              27,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1138,
+              542,
+              14,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              400,
+              356,
+              176,
+              47
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              33,
+              80,
+              9,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              251,
+              60,
+              20,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              51,
+              35,
+              13,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              32,
+              0,
+              120,
+              174
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135618_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              162,
+              466,
+              22,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1143,
+              464,
+              19,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              98,
+              449,
+              22,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              178,
+              417,
+              22,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              225,
+              370,
+              21,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              178,
+              370,
+              20,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              399,
+              367,
+              57,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              258,
+              354,
+              20,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              462,
+              353,
+              74,
+              52
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              587,
+              243,
+              15,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 10 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_135618_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              534,
+              375,
+              24,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              396,
+              358,
+              134,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 41
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141510_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "idle",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              495,
+              93,
+              59,
+              237
+            ],
+            "confidence": 0.40169484717036485,
+            "notes": "长度:237px, 宽度:59px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              420,
+              353,
+              116,
+              57
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              561,
+              320,
+              32,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              570,
+              101,
+              17,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 55
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141510_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              254,
+              14,
+              64,
+              272
+            ],
+            "confidence": 0.42499993359376037,
+            "notes": "长度:272px, 宽度:64px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              735,
+              705,
+              27,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              496,
+              704,
+              28,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              416,
+              704,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              352,
+              704,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              174,
+              684,
+              30,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              857,
+              682,
+              23,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              158,
+              658,
+              18,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1093,
+              650,
+              21,
+              70
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              957,
+              649,
+              17,
+              71
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              910,
+              649,
+              16,
+              71
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              99,
+              646,
+              69,
+              52
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              273,
+              640,
+              25,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              579,
+              638,
+              21,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              369,
+              625,
+              23,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              144,
+              624,
+              26,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              591,
+              590,
+              23,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              128,
+              577,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              882,
+              576,
+              70,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              766,
+              552,
+              46,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              960,
+              550,
+              40,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              928,
+              549,
+              24,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              88,
+              544,
+              18,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              431,
+              522,
+              39,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              97,
+              513,
+              27,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              868,
+              500,
+              20,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              208,
+              496,
+              40,
+              34
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              320,
+              448,
+              16,
+              10
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              431,
+              447,
+              15,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              128,
+              432,
+              26,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              580,
+              426,
+              38,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              528,
+              382,
+              18,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              402,
+              360,
+              33,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              443,
+              352,
+              33,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              96,
+              274,
+              32,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              449,
+              131,
+              17,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 36 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141510_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              491,
+              80,
+              59,
+              248
+            ],
+            "confidence": 0.4203389118069641,
+            "notes": "长度:248px, 宽度:59px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              276,
+              50,
+              26,
+              109
+            ],
+            "confidence": 0.4192306079882277,
+            "notes": "长度:109px, 宽度:26px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              872,
+              497,
+              18,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              449,
+              358,
+              71,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              672,
+              352,
+              28,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              562,
+              146,
+              22,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              594,
+              114,
+              20,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 13
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141510_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              493,
+              54,
+              67,
+              274
+            ],
+            "confidence": 0.408955162842513,
+            "notes": "长度:274px, 宽度:67px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              144,
+              657,
+              19,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              111,
+              624,
+              17,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              414,
+              356,
+              116,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              545,
+              321,
+              20,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              630,
+              209,
+              25,
+              31
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              747,
+              139,
+              37,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 18
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_(1)_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              494,
+              54,
+              63,
+              275
+            ],
+            "confidence": 0.43650786722097346,
+            "notes": "长度:275px, 宽度:63px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              496,
+              369,
+              32,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              703,
+              196,
+              39,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_(1)_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 70
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_(1)_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1122,
+              135,
+              3,
+              24
+            ],
+            "confidence": 0.7999973333422222,
+            "notes": "长度:24px, 宽度:3px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              482,
+              361,
+              30,
+              33
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              746,
+              298,
+              18,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              804,
+              209,
+              21,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              864,
+              78,
+              20,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 52
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_(1)_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              464,
+              364,
+              54,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 71
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              494,
+              54,
+              63,
+              275
+            ],
+            "confidence": 0.43650786722097346,
+            "notes": "长度:275px, 宽度:63px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              496,
+              369,
+              32,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              703,
+              196,
+              39,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 70
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1122,
+              135,
+              3,
+              24
+            ],
+            "confidence": 0.7999973333422222,
+            "notes": "长度:24px, 宽度:3px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              482,
+              361,
+              30,
+              33
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              746,
+              298,
+              18,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              804,
+              209,
+              21,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              864,
+              78,
+              20,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 52
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141604_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              464,
+              364,
+              54,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 71
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141621_t02s.jpg",
+      "suggested_labels": {
+        "phase": "spraying",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 76
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141621_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              495,
+              113,
+              50,
+              215
+            ],
+            "confidence": 0.4299999140000172,
+            "notes": "长度:215px, 宽度:50px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              429,
+              368,
+              51,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 59
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141621_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              493,
+              370,
+              30,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 57
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141621_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              490,
+              225,
+              14,
+              78
+            ],
+            "confidence": 0.5571424591839578,
+            "notes": "长度:78px, 宽度:14px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              521,
+              108,
+              25,
+              128
+            ],
+            "confidence": 0.5119997952000819,
+            "notes": "长度:128px, 宽度:25px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              354,
+              709,
+              20,
+              11
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              834,
+              673,
+              20,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              854,
+              577,
+              16,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              788,
+              516,
+              18,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              497,
+              362,
+              28,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              377,
+              322,
+              105,
+              3
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 26
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 8 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141638_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              81,
+              611,
+              15,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              656,
+              436,
+              20,
+              12
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              585,
+              432,
+              26,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              433,
+              362,
+              127,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              568,
+              304,
+              18,
+              31
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              609,
+              257,
+              29,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              596,
+              193,
+              16,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141638_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              994,
+              694,
+              17,
+              13
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              497,
+              372,
+              21,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              565,
+              277,
+              23,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              612,
+              272,
+              16,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 30
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141638_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              494,
+              53,
+              66,
+              274
+            ],
+            "confidence": 0.41515145224977995,
+            "notes": "长度:274px, 宽度:66px"
+          }
+        ],
+        "quality_score": 20
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_141638_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              493,
+              78,
+              59,
+              250
+            ],
+            "confidence": 0.4237287417408912,
+            "notes": "长度:250px, 宽度:59px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              144,
+              704,
+              22,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              112,
+              640,
+              28,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              50,
+              625,
+              24,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              580,
+              433,
+              18,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              543,
+              384,
+              33,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              431,
+              367,
+              41,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              480,
+              363,
+              24,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 8 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143044_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "meshed",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 54
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143044_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "idle",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              462,
+              7,
+              87
+            ],
+            "confidence": 0.9,
+            "notes": "长度:87px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              780,
+              334,
+              20,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              593,
+              322,
+              15,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              772,
+              294,
+              28,
+              28
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              672,
+              288,
+              16,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              719,
+              276,
+              11,
+              34
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              692,
+              270,
+              20,
+              34
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              592,
+              250,
+              42,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              568,
+              246,
+              20,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              786,
+              220,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              560,
+              179,
+              32,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              618,
+              111,
+              20,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 16
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 12 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143044_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              440,
+              6,
+              90
+            ],
+            "confidence": 0.9,
+            "notes": "长度:90px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              137,
+              6,
+              117
+            ],
+            "confidence": 0.9,
+            "notes": "长度:117px, 宽度:6px"
+          }
+        ],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143044_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1272,
+              447,
+              8,
+              89
+            ],
+            "confidence": 0.9,
+            "notes": "长度:89px, 宽度:8px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1202,
+              0,
+              19,
+              3
+            ],
+            "confidence": 0.6333312222292593,
+            "notes": "长度:19px, 宽度:3px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              584,
+              302,
+              18,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              624,
+              256,
+              28,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              560,
+              250,
+              28,
+              62
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              544,
+              240,
+              22,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              576,
+              208,
+              16,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              547,
+              162,
+              57,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              688,
+              112,
+              16,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              672,
+              0,
+              18,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 17
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 10 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143101_t02s.jpg",
+      "suggested_labels": {
+        "phase": "spraying",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              433,
+              6,
+              98
+            ],
+            "confidence": 0.9,
+            "notes": "长度:98px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              138,
+              6,
+              88
+            ],
+            "confidence": 0.9,
+            "notes": "长度:88px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              544,
+              302,
+              22,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              528,
+              264,
+              24,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              538,
+              176,
+              44,
+              57
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              705,
+              162,
+              15,
+              12
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              642,
+              144,
+              14,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 38
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143101_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              440,
+              6,
+              110
+            ],
+            "confidence": 0.9,
+            "notes": "长度:110px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              138,
+              6,
+              80
+            ],
+            "confidence": 0.9,
+            "notes": "长度:80px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              529,
+              294,
+              44,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              548,
+              167,
+              44,
+              49
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              705,
+              65,
+              13,
+              13
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              625,
+              20,
+              15,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              610,
+              0,
+              68,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 37
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143101_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              1056,
+              462,
+              14,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              879,
+              309,
+              21,
+              51
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              735,
+              303,
+              121,
+              75
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              760,
+              303,
+              25,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              955,
+              294,
+              25,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              753,
+              262,
+              15,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              768,
+              232,
+              60,
+              54
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 33
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143101_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              502,
+              249,
+              18,
+              80
+            ],
+            "confidence": 0.44444419753100134,
+            "notes": "长度:80px, 宽度:18px"
+          }
+        ],
+        "quality_score": 62
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143118_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              764,
+              289,
+              26,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              928,
+              284,
+              54,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              784,
+              261,
+              62,
+              75
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              912,
+              256,
+              16,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              816,
+              240,
+              109,
+              90
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 44
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143118_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1166,
+              247,
+              7,
+              32
+            ],
+            "confidence": 0.45714220408256556,
+            "notes": "长度:32px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              939,
+              350,
+              21,
+              8
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              758,
+              338,
+              52,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              922,
+              331,
+              38,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              806,
+              294,
+              102,
+              50
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 40
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143118_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              864,
+              353,
+              16,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              768,
+              339,
+              28,
+              37
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              927,
+              338,
+              41,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              858,
+              322,
+              30,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              791,
+              296,
+              51,
+              52
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              721,
+              242,
+              14,
+              19
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 38
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 6 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260331_143118_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "unknown",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              866,
+              368,
+              36,
+              38
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              912,
+              338,
+              54,
+              26
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              730,
+              288,
+              182,
+              99
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              528,
+              237,
+              214,
+              115
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              801,
+              54,
+              10,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              720,
+              0,
+              86,
+              103
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              578,
+              0,
+              58,
+              56
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 32
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_132840_t02s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              454,
+              7,
+              73
+            ],
+            "confidence": 0.9,
+            "notes": "长度:73px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              499,
+              205,
+              27,
+              126
+            ],
+            "confidence": 0.46666649382722447,
+            "notes": "长度:126px, 宽度:27px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              489,
+              0,
+              30,
+              7
+            ],
+            "confidence": 0.42857081632740524,
+            "notes": "长度:30px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              625,
+              22,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 43
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_132840_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              498,
+              84,
+              49,
+              243
+            ],
+            "confidence": 0.4959182661391293,
+            "notes": "长度:243px, 宽度:49px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              965,
+              135,
+              15,
+              57
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_132840_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              936,
+              274,
+              23,
+              101
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_132840_t11s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "stain",
+            "bbox": [
+              1010,
+              165,
+              30,
+              51
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 55
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133542_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              422,
+              6,
+              105
+            ],
+            "confidence": 0.9,
+            "notes": "长度:105px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              54,
+              438,
+              28,
+              50
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 47
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133542_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              433,
+              6,
+              94
+            ],
+            "confidence": 0.9,
+            "notes": "长度:94px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              186,
+              512,
+              36,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              54,
+              436,
+              18,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              432,
+              32,
+              47
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              78,
+              416,
+              98,
+              82
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 32
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133542_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              442,
+              6,
+              103
+            ],
+            "confidence": 0.9,
+            "notes": "长度:103px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              488,
+              76,
+              60,
+              251
+            ],
+            "confidence": 0.41833326361112266,
+            "notes": "长度:251px, 宽度:60px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              896,
+              706,
+              22,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              352,
+              705,
+              22,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              941,
+              704,
+              27,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              992,
+              690,
+              86,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              224,
+              688,
+              20,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              434,
+              674,
+              18,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1152,
+              657,
+              22,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              145,
+              656,
+              23,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              322,
+              466,
+              22,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              160,
+              433,
+              26,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              80,
+              417,
+              40,
+              57
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              129,
+              274,
+              33,
+              23
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 0
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 14 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133542_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              434,
+              7,
+              97
+            ],
+            "confidence": 0.9,
+            "notes": "长度:97px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1104,
+              704,
+              16,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              160,
+              436,
+              24,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              76,
+              434,
+              35,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              129,
+              276,
+              29,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 32
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133559_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              437,
+              7,
+              83
+            ],
+            "confidence": 0.9,
+            "notes": "长度:83px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              182,
+              240,
+              5,
+              23
+            ],
+            "confidence": 0.45999908000184,
+            "notes": "长度:23px, 宽度:5px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1123,
+              112,
+              39,
+              185
+            ],
+            "confidence": 0.47435885272849926,
+            "notes": "长度:185px, 宽度:39px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              144,
+              450,
+              14,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              56,
+              436,
+              16,
+              37
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              92,
+              433,
+              36,
+              35
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              432,
+              28,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 22
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 7 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133559_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              437,
+              7,
+              83
+            ],
+            "confidence": 0.9,
+            "notes": "长度:83px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1144,
+              704,
+              16,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              118,
+              440,
+              26,
+              22
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              56,
+              436,
+              16,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              492,
+              365,
+              22,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 31
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133559_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              446,
+              6,
+              95
+            ],
+            "confidence": 0.9,
+            "notes": "长度:95px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1138,
+              705,
+              22,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              143,
+              277,
+              17,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 45
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133559_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              445,
+              6,
+              91
+            ],
+            "confidence": 0.9,
+            "notes": "长度:91px, 宽度:6px"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133617_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              434,
+              6,
+              88
+            ],
+            "confidence": 0.9,
+            "notes": "长度:88px, 宽度:6px"
+          }
+        ],
+        "quality_score": 49
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133617_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              434,
+              6,
+              88
+            ],
+            "confidence": 0.9,
+            "notes": "长度:88px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              992,
+              712,
+              31,
+              8
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1024,
+              696,
+              12,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1043,
+              676,
+              93,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              62,
+              440,
+              18,
+              30
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              133,
+              278,
+              21,
+              10
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 25
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 6 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133617_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              450,
+              6,
+              100
+            ],
+            "confidence": 0.9,
+            "notes": "长度:100px, 宽度:6px"
+          }
+        ],
+        "quality_score": 53
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133617_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              431,
+              6,
+              107
+            ],
+            "confidence": 0.9,
+            "notes": "长度:107px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              497,
+              368,
+              26,
+              12
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 48
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133635_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              434,
+              6,
+              96
+            ],
+            "confidence": 0.9,
+            "notes": "长度:96px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1140,
+              113,
+              18,
+              77
+            ],
+            "confidence": 0.4277775401235888,
+            "notes": "长度:77px, 宽度:18px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              130,
+              277,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 37
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133635_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              437,
+              6,
+              94
+            ],
+            "confidence": 0.9,
+            "notes": "长度:94px, 宽度:6px"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133635_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              436,
+              6,
+              90
+            ],
+            "confidence": 0.9,
+            "notes": "长度:90px, 宽度:6px"
+          }
+        ],
+        "quality_score": 53
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133635_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              436,
+              6,
+              90
+            ],
+            "confidence": 0.9,
+            "notes": "长度:90px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              534,
+              128,
+              21,
+              87
+            ],
+            "confidence": 0.4142855170068967,
+            "notes": "长度:87px, 宽度:21px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              521,
+              236,
+              137,
+              96
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 38
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133654_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              434,
+              6,
+              95
+            ],
+            "confidence": 0.9,
+            "notes": "长度:95px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              940,
+              706,
+              44,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              430,
+              700,
+              16,
+              18
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1080,
+              693,
+              38,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              992,
+              693,
+              48,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1108,
+              672,
+              18,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              445,
+              40,
+              35
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              160,
+              436,
+              17,
+              12
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              128,
+              432,
+              24,
+              32
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              63,
+              432,
+              49,
+              48
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              135,
+              276,
+              25,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 1
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 11 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133654_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              431,
+              6,
+              98
+            ],
+            "confidence": 0.9,
+            "notes": "长度:98px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              138,
+              278,
+              21,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133654_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              436,
+              6,
+              104
+            ],
+            "confidence": 0.9,
+            "notes": "长度:104px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              185,
+              57,
+              48,
+              206
+            ],
+            "confidence": 0.42916657725696306,
+            "notes": "长度:206px, 宽度:48px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              138,
+              275,
+              22,
+              21
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 45
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133654_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              440,
+              6,
+              104
+            ],
+            "confidence": 0.9,
+            "notes": "长度:104px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              136,
+              276,
+              22,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 46
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133848_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              441,
+              7,
+              81
+            ],
+            "confidence": 0.9,
+            "notes": "长度:81px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1144,
+              74,
+              17,
+              113
+            ],
+            "confidence": 0.664705491349711,
+            "notes": "长度:113px, 宽度:17px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              490,
+              46,
+              69,
+              279
+            ],
+            "confidence": 0.4043477674858308,
+            "notes": "长度:279px, 宽度:69px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              40,
+              471,
+              8,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 39
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133848_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              442,
+              7,
+              80
+            ],
+            "confidence": 0.9,
+            "notes": "长度:80px, 宽度:7px"
+          }
+        ],
+        "quality_score": 60
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133848_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              448,
+              6,
+              73
+            ],
+            "confidence": 0.9,
+            "notes": "长度:73px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              17,
+              512,
+              14,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133848_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              435,
+              6,
+              86
+            ],
+            "confidence": 0.9,
+            "notes": "长度:86px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1143,
+              116,
+              16,
+              84
+            ],
+            "confidence": 0.5249996718752051,
+            "notes": "长度:84px, 宽度:16px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1056,
+              712,
+              32,
+              8
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1009,
+              704,
+              31,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              1094,
+              700,
+              20,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 30
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133907_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              319,
+              7,
+              60
+            ],
+            "confidence": 0.8571416326548105,
+            "notes": "长度:60px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              498,
+              205,
+              27,
+              123
+            ],
+            "confidence": 0.45555538683133817,
+            "notes": "长度:123px, 宽度:27px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              525,
+              49,
+              34,
+              141
+            ],
+            "confidence": 0.4147057603806587,
+            "notes": "长度:141px, 宽度:34px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              799,
+              52,
+              18,
+              60
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 42
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133907_t05s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [],
+        "quality_score": 61
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": []
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133907_t08s.jpg",
+      "suggested_labels": {
+        "phase": "finished",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              353,
+              6,
+              206
+            ],
+            "confidence": 0.9,
+            "notes": "长度:206px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              513,
+              63,
+              38,
+              208
+            ],
+            "confidence": 0.5473682770083481,
+            "notes": "长度:208px, 宽度:38px"
+          }
+        ],
+        "quality_score": 50
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 2 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133907_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              451,
+              7,
+              85
+            ],
+            "confidence": 0.9,
+            "notes": "长度:85px, 宽度:7px"
+          }
+        ],
+        "quality_score": 52
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133925_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              425,
+              6,
+              105
+            ],
+            "confidence": 0.9,
+            "notes": "长度:105px, 宽度:6px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              496,
+              47,
+              63,
+              281
+            ],
+            "confidence": 0.4460316752330674,
+            "notes": "长度:281px, 宽度:63px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              636,
+              0,
+              36,
+              7
+            ],
+            "confidence": 0.5142849795928863,
+            "notes": "长度:36px, 宽度:7px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              82,
+              449,
+              14,
+              25
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              13,
+              426,
+              18,
+              44
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 35
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 5 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133925_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              464,
+              7,
+              56
+            ],
+            "confidence": 0.7999988571444898,
+            "notes": "长度:56px, 宽度:7px"
+          }
+        ],
+        "quality_score": 56
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133925_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              498,
+              49,
+              60,
+              279
+            ],
+            "confidence": 0.4649999225000129,
+            "notes": "长度:279px, 宽度:60px"
+          }
+        ],
+        "quality_score": 53
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 1 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133925_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              498,
+              47,
+              61,
+              280
+            ],
+            "confidence": 0.45901631819404615,
+            "notes": "长度:280px, 宽度:61px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              44,
+              448,
+              40,
+              42
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              132,
+              278,
+              26,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 39
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133944_t02s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1273,
+              326,
+              7,
+              199
+            ],
+            "confidence": 0.9,
+            "notes": "长度:199px, 宽度:7px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              491,
+              47,
+              68,
+              280
+            ],
+            "confidence": 0.41176464532872864,
+            "notes": "长度:280px, 宽度:68px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              36,
+              445,
+              44,
+              33
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              130,
+              277,
+              14,
+              14
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 31
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133944_t05s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              491,
+              47,
+              68,
+              281
+            ],
+            "confidence": 0.41323523334775975,
+            "notes": "长度:281px, 宽度:68px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              24,
+              464,
+              27,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              54,
+              444,
+              17,
+              20
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              130,
+              276,
+              24,
+              15
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 33
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 4 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133944_t08s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1167,
+              345,
+              27,
+              5
+            ],
+            "confidence": 0.5399989200021601,
+            "notes": "长度:27px, 宽度:5px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              498,
+              96,
+              48,
+              225
+            ],
+            "confidence": 0.46874990234377034,
+            "notes": "长度:225px, 宽度:48px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              1141,
+              95,
+              20,
+              98
+            ],
+            "confidence": 0.4899997550001225,
+            "notes": "长度:98px, 宽度:20px"
+          },
+          {
+            "type": "crack",
+            "bbox": [
+              641,
+              0,
+              50,
+              9
+            ],
+            "confidence": 0.5555549382722909,
+            "notes": "长度:50px, 宽度:9px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              0,
+              610,
+              18,
+              29
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              193,
+              512,
+              17,
+              24
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              63,
+              449,
+              27,
+              46
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              511,
+              368,
+              37,
+              16
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              136,
+              279,
+              24,
+              17
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 15
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 9 个潜在缺陷，请人工确认"
+      ]
+    },
+    {
+      "filename": "JHMH2405004008_20260401_133944_t11s.jpg",
+      "suggested_labels": {
+        "phase": "unknown",
+        "wall_status": "coated",
+        "equipment_status": "spraying",
+        "defects": [
+          {
+            "type": "crack",
+            "bbox": [
+              1274,
+              425,
+              6,
+              116
+            ],
+            "confidence": 0.9,
+            "notes": "长度:116px, 宽度:6px"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              26,
+              464,
+              48,
+              36
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          },
+          {
+            "type": "stain",
+            "bbox": [
+              56,
+              443,
+              19,
+              27
+            ],
+            "confidence": 0.6,
+            "notes": "颜色异常区域"
+          }
+        ],
+        "quality_score": 43
+      },
+      "confidence": {
+        "phase": 0.7,
+        "wall_status": 0.7,
+        "equipment_status": 0.7,
+        "defects": 0.6,
+        "quality_score": 0.5
+      },
+      "needs_review": true,
+      "review_notes": [
+        "检测到 3 个潜在缺陷，请人工确认"
+      ]
+    }
+  ],
+  "note": "所有标注建议都需要人工审核确认"
+}

@@ -1,0 +1,876 @@
+{
+  "created_at": "2026-04-01T17:50:20.160821",
+  "total_frames": 96,
+  "train_frames": 76,
+  "val_frames": 20,
+  "train_files": [
+    "JHMH2405004008_20260401_133907_t02s.jpg",
+    "JHMH2405004008_20260401_132840_t11s.jpg",
+    "JHMH2405004008_20260401_133542_t08s.jpg",
+    "JHMH2405004008_20260331_133957_t05s.jpg",
+    "JHMH2405004008_20260331_141604_t05s.jpg",
+    "JHMH2405004008_20260331_141510_t08s.jpg",
+    "JHMH2405004008_20260331_132219_t05s.jpg",
+    "JHMH2405004008_20260401_133617_t02s.jpg",
+    "JHMH2405004008_20260331_134013_t11s.jpg",
+    "JHMH2405004008_20260401_133542_t02s.jpg",
+    "JHMH2405004008_20260401_133542_t11s.jpg",
+    "JHMH2405004008_20260331_133957_t08s.jpg",
+    "JHMH2405004008_20260331_143118_t02s.jpg",
+    "JHMH2405004008_20260401_133635_t08s.jpg",
+    "JHMH2405004008_20260331_143101_t11s.jpg",
+    "JHMH2405004008_20260401_133925_t05s.jpg",
+    "JHMH2405004008_20260331_143101_t05s.jpg",
+    "JHMH2405004008_20260331_141638_t05s.jpg",
+    "JHMH2405004008_20260401_133559_t05s.jpg",
+    "JHMH2405004008_20260331_141604_(1)_t08s.jpg",
+    "JHMH2405004008_20260331_143118_t11s.jpg",
+    "JHMH2405004008_20260401_133635_t02s.jpg",
+    "JHMH2405004008_20260331_143044_t05s.jpg",
+    "JHMH2405004008_20260331_141604_t02s.jpg",
+    "JHMH2405004008_20260401_133848_t02s.jpg",
+    "JHMH2405004008_20260401_133559_t11s.jpg",
+    "JHMH2405004008_20260401_133925_t11s.jpg",
+    "JHMH2405004008_20260331_133957_t02s.jpg",
+    "JHMH2405004008_20260331_141621_t05s.jpg",
+    "JHMH2405004008_20260401_133654_t02s.jpg",
+    "JHMH2405004008_20260401_133654_t11s.jpg",
+    "JHMH2405004008_20260331_143044_t11s.jpg",
+    "JHMH2405004008_20260331_143044_t02s.jpg",
+    "JHMH2405004008_20260331_141638_t08s.jpg",
+    "JHMH2405004008_20260401_133944_t08s.jpg",
+    "JHMH2405004008_20260331_143101_t08s.jpg",
+    "JHMH2405004008_20260401_133848_t08s.jpg",
+    "JHMH2405004008_20260331_134013_t02s.jpg",
+    "JHMH2405004008_20260331_141621_t02s.jpg",
+    "JHMH2405004008_20260331_135618_t11s.jpg",
+    "JHMH2405004008_20260331_141621_t11s.jpg",
+    "JHMH2405004008_20260331_141638_t02s.jpg",
+    "JHMH2405004008_20260331_135014_t08s.jpg",
+    "JHMH2405004008_20260401_133654_t05s.jpg",
+    "JHMH2405004008_20260401_133617_t08s.jpg",
+    "JHMH2405004008_20260401_132840_t02s.jpg",
+    "JHMH2405004008_20260331_133940_t11s.jpg",
+    "JHMH2405004008_20260331_141604_t08s.jpg",
+    "JHMH2405004008_20260401_133654_t08s.jpg",
+    "JHMH2405004008_20260331_143044_t08s.jpg",
+    "JHMH2405004008_20260331_132219_t08s.jpg",
+    "JHMH2405004008_20260331_135014_t02s.jpg",
+    "JHMH2405004008_20260331_141621_t08s.jpg",
+    "JHMH2405004008_20260401_133559_t08s.jpg",
+    "JHMH2405004008_20260331_135618_t08s.jpg",
+    "JHMH2405004008_20260401_132840_t08s.jpg",
+    "JHMH2405004008_20260331_141510_t02s.jpg",
+    "JHMH2405004008_20260331_133940_t05s.jpg",
+    "JHMH2405004008_20260331_133940_t08s.jpg",
+    "JHMH2405004008_20260331_135618_t05s.jpg",
+    "JHMH2405004008_20260331_143101_t02s.jpg",
+    "JHMH2405004008_20260401_133542_t05s.jpg",
+    "JHMH2405004008_20260401_133925_t02s.jpg",
+    "JHMH2405004008_20260331_135014_t11s.jpg",
+    "JHMH2405004008_20260401_133635_t05s.jpg",
+    "JHMH2405004008_20260331_141638_t11s.jpg",
+    "JHMH2405004008_20260401_133848_t11s.jpg",
+    "JHMH2405004008_20260331_135618_t02s.jpg",
+    "JHMH2405004008_20260331_132219_t02s.jpg",
+    "JHMH2405004008_20260401_133944_t02s.jpg",
+    "JHMH2405004008_20260401_132840_t05s.jpg",
+    "JHMH2405004008_20260401_133925_t08s.jpg",
+    "JHMH2405004008_20260331_143118_t05s.jpg",
+    "JHMH2405004008_20260401_133907_t11s.jpg",
+    "JHMH2405004008_20260331_141510_t05s.jpg",
+    "JHMH2405004008_20260401_133617_t11s.jpg"
+  ],
+  "val_files": [
+    "JHMH2405004008_20260401_133944_t11s.jpg",
+    "JHMH2405004008_20260401_133559_t02s.jpg",
+    "JHMH2405004008_20260331_141604_(1)_t05s.jpg",
+    "JHMH2405004008_20260331_141510_t11s.jpg",
+    "JHMH2405004008_20260401_133907_t05s.jpg",
+    "JHMH2405004008_20260401_133944_t05s.jpg",
+    "JHMH2405004008_20260331_133940_t02s.jpg",
+    "JHMH2405004008_20260331_143118_t08s.jpg",
+    "JHMH2405004008_20260401_133635_t11s.jpg",
+    "JHMH2405004008_20260331_133957_t11s.jpg",
+    "JHMH2405004008_20260401_133617_t05s.jpg",
+    "JHMH2405004008_20260401_133907_t08s.jpg",
+    "JHMH2405004008_20260331_134013_t05s.jpg",
+    "JHMH2405004008_20260331_135014_t05s.jpg",
+    "JHMH2405004008_20260331_141604_(1)_t02s.jpg",
+    "JHMH2405004008_20260331_141604_(1)_t11s.jpg",
+    "JHMH2405004008_20260331_141604_t11s.jpg",
+    "JHMH2405004008_20260331_132219_t11s.jpg",
+    "JHMH2405004008_20260331_134013_t08s.jpg",
+    "JHMH2405004008_20260401_133848_t05s.jpg"
+  ],
+  "annotations": {
+    "JHMH2405004008_20260401_133907_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_132840_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133542_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133957_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141510_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_132219_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133617_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_134013_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133542_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133542_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133957_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143118_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133635_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143101_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133925_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143101_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141638_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133559_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_(1)_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143118_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133635_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143044_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133848_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133559_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133925_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133957_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141621_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133654_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133654_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143044_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143044_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141638_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133944_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143101_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133848_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_134013_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141621_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135618_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141621_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141638_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135014_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133654_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133617_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_132840_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133940_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133654_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143044_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_132219_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135014_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141621_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133559_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135618_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_132840_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141510_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133940_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133940_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135618_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143101_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133542_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133925_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135014_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133635_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141638_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133848_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135618_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_132219_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133944_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_132840_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133925_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143118_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133907_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141510_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133617_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133944_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133559_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_(1)_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141510_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133907_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133944_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133940_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_143118_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133635_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_133957_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133617_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133907_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_134013_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_135014_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_(1)_t02s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_(1)_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_141604_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_132219_t11s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260331_134013_t08s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    },
+    "JHMH2405004008_20260401_133848_t05s.jpg": {
+      "phase": "",
+      "wall_status": "",
+      "equipment_status": "",
+      "defects": [],
+      "quality_score": null,
+      "bboxes": []
+    }
+  }
+}

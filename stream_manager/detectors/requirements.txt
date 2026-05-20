@@ -1,0 +1,22 @@
+# OpenCV-contrib 可能需要的额外功能
+# opencv-contrib-python>=4.8.0
+
+# 检测器依赖
+opencv-python>=4.8.0
+numpy>=1.24.0
+ultralytics>=8.0.0
+
+# 异步和网络
+aiohttp>=3.8.0
+aiofiles>=23.0.0
+
+# 可选：S3/OSS 上传
+# boto3>=1.28.0
+
+# 可选：MQTT
+# aiomqtt>=1.0.0
+# paho-mqtt>=1.6.0
+
+# 可选：更强大的跟踪器（DeepSORT等）
+# filterpy>=1.4.5
+# scikit-learn>=1.0.0

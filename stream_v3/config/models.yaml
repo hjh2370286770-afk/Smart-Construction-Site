@@ -1,0 +1,131 @@
+# 检测模型配置
+models:
+  # PPE 检测模型 - 安全帽、反光衣、口罩
+  ppe_detector:
+    name: "PPE Detector"
+    description: "检测安全帽、反光衣、口罩佩戴情况"
+    type: "yolo"
+    path: "../stream_manager/detectors/models/ppe_best.pt"
+    version: "1.0"
+    classes:
+      - id: 0
+        name: "person"
+        color: [0, 255, 0]
+      - id: 1
+        name: "helmet"
+        color: [0, 0, 255]
+      - id: 2
+        name: "vest"
+        color: [255, 255, 0]
+      - id: 3
+        name: "mask"
+        color: [255, 0, 255]
+    # 违规检测逻辑
+    violation_rules:
+      - name: "no_helmet"
+        description: "未戴安全帽"
+        condition: "person AND NOT helmet"
+        severity: "high"
+      - name: "no_vest"
+        description: "未穿反光衣"
+        condition: "person AND NOT vest"
+        severity: "medium"
+      - name: "no_mask"
+        description: "未戴口罩"
+        condition: "person AND NOT mask"
+        severity: "low"
+    # 模型参数
+    params:
+      conf_threshold: 0.45
+      iou_threshold: 0.4
+      img_size: 640
+
+  # 车辆检测模型
+  vehicle_detector:
+    name: "Vehicle Detector"
+    description: "检测车辆类型和数量"
+    type: "yolo"
+    path: "yolov8n.pt"  # 使用预训练模型
+    version: "1.0"
+    classes:
+      - id: 2
+        name: "car"
+        color: [0, 255, 255]
+      - id: 3
+        name: "motorcycle"
+        color: [255, 0, 0]
+      - id: 5
+        name: "bus"
+        color: [255, 255, 0]
+      - id: 7
+        name: "truck"
+        color: [128, 128, 128]
+    violation_rules:
+      - name: "unauthorized_vehicle"
+        description: "未授权车辆进入"
+        condition: "truck OR bus"
+        severity: "medium"
+    params:
+      conf_threshold: 0.5
+      iou_threshold: 0.45
+      img_size: 640
+
+  # 火灾检测模型
+  fire_detector:
+    name: "Fire Detector"
+    description: "检测火灾和烟雾"
+    type: "yolo"
+    path: "fire_detection.pt"
+    version: "1.0"
+    classes:
+      - id: 0
+        name: "fire"
+        color: [0, 0, 255]
+      - id: 1
+        name: "smoke"
+        color: [128, 128, 128]
+    violation_rules:
+      - name: "fire_detected"
+        description: "检测到火灾"
+        condition: "fire"
+        severity: "critical"
+      - name: "smoke_detected"
+        description: "检测到烟雾"
+        condition: "smoke"
+        severity: "high"
+    params:
+      conf_threshold: 0.6
+      iou_threshold: 0.4
+      img_size: 640
+
+  # 人员计数模型
+  person_counter:
+    name: "Person Counter"
+    description: "统计区域内人员数量"
+    type: "yolo"
+    path: "yolov8n.pt"
+    version: "1.0"
+    classes:
+      - id: 0
+        name: "person"
+        color: [0, 255, 0]
+    violation_rules:
+      - name: "overcrowding"
+        description: "区域人员过多"
+        condition: "person_count > 10"
+        severity: "medium"
+    params:
+      conf_threshold: 0.4
+      iou_threshold: 0.45
+      img_size: 640
+
+# 模型加载配置
+model_manager:
+  # 是否延迟加载模型（按需加载）
+  lazy_loading: true
+  # 最大同时加载模型数
+  max_loaded_models: 3
+  # 模型缓存时间（秒）
+  cache_ttl: 300
+  # 自动卸载不常用模型
+  auto_unload: true

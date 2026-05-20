@@ -1,0 +1,84 @@
+# 工地配置
+sites:
+  - id: site_001
+    name: "工地A-实名制通道"
+    location: "深圳市南山区"
+    description: "主要出入口，人员流量大"
+    cameras:
+      - id: cam_001
+        name: "入口摄像头"
+        url: "rtmp://rtmp05open.ys7.com:1935/v3/openlive/G49745764_1_1?expire=1805439206&id=956566417183907840&t=c08663468482dadc8848af79d473a956f8d8aa105fca33609790d99a2816e19e&ev=101"
+        type: "rtmp"
+        enabled: true
+        models:
+          - ppe_detector
+        rules:
+          - type: "no_helmet"
+            severity: "high"
+            alert: true
+            save_screenshot: true
+          - type: "no_vest"
+            severity: "medium"
+            alert: true
+            save_screenshot: true
+        # 检测区域 (ROI) - 可选
+        roi:
+          - [100, 100, 800, 600]
+
+  - id: site_002
+    name: "工地B-施工区域"
+    location: "深圳市福田区"
+    description: "高空作业区域，安全要求高"
+    cameras:
+      - id: cam_002
+        name: "塔吊视角"
+        url: "rtmp://example.com/stream2"
+        type: "rtmp"
+        enabled: false  # 暂时禁用
+        models:
+          - ppe_detector
+          - vehicle_detector
+        rules:
+          - type: "no_helmet"
+            severity: "critical"
+            alert: true
+            save_screenshot: true
+          - type: "no_harness"
+            severity: "critical"
+            alert: true
+            save_screenshot: true
+
+# 全局配置
+global:
+  # 视频流处理
+  stream:
+    buffer_size: 1
+    reconnect_interval: 3
+    max_reconnects: 10
+    frame_skip: 3  # 每3帧检测一次
+  
+  # 检测配置
+  detection:
+    conf_threshold: 0.45
+    iou_threshold: 0.4
+    device: "auto"  # auto, cpu, cuda
+  
+  # 输出配置
+  output:
+    save_violations: true
+    violation_interval: 3  # 秒
+    output_dir: "./output"
+    log_level: "INFO"
+  
+  # 向量记忆配置
+  memory:
+    enabled: true
+    db_path: "./memory_db"
+    similarity_threshold: 0.85
+    
+  # Web 服务配置
+  web:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8000
+    websocket_port: 8001

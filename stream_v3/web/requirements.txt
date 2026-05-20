@@ -1,0 +1,8 @@
+# stream_manager_v2 Web 依赖
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+websockets>=12.0
+
+# 前端依赖（需要 Node.js 环境）
+# cd web_frontend && npm install

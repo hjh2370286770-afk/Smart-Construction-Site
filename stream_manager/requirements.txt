@@ -1,0 +1,9 @@
+opencv-python>=4.8.0
+numpy>=1.24.0
+ultralytics>=8.0.0
+aiohttp>=3.8.0
+aiofiles>=23.0.0
+
+# 可选依赖
+# boto3>=1.28.0  # S3/OSS 上传
+# aiomqtt>=1.0.0  # MQTT 上传

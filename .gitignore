@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Models & Large Files
+*.pt
+*.pth
+*.onnx
+*.engine
+*.mlmodel
+*.tflite
+*.weights
+models/pretrained/
+models/*.pt
+
+# Datasets
+dataset/*/raw_frames/
+dataset/*/train/images/
+dataset/*/val/images/
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+*.mov
+
+# Output & Logs
+output/
+ppe_monitor_output/
+ppe_monitor_output_*/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+storage/
+temp/
+temp_ppe_model/
+*.bat
+
+# Keep structure files
+!README.md
+!requirements.txt
+!*.yaml
+!*.yml
+!*.json
+!*.py
