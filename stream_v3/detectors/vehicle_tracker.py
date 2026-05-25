@@ -233,9 +233,12 @@ class VehicleTracker:
             left_threshold = frame_width * self.exit_left_threshold
             
             # 条件1：检测框完全在左侧阈值内
-            is_near_left = x2 < left_threshold
+            is_fully_left = x2 < left_threshold
             
-            # 条件2：或者车辆正在向左移动且接近边缘
+            # 条件2：车辆大部分在左侧（左边界已过阈值线）
+            is_mostly_left = x1 < left_threshold and x2 < left_threshold * 3
+            
+            # 条件3：或者车辆正在向左移动且接近边缘
             is_moving_left = False
             if len(track.position_history) >= 3:
                 recent = track.position_history[-3:]
@@ -244,7 +247,7 @@ class VehicleTracker:
                 if x_positions[-1] < x_positions[0]:  # 向左移动
                     is_moving_left = True
             
-            if is_near_left or (is_moving_left and x1 < left_threshold * 2):
+            if is_fully_left or is_mostly_left or (is_moving_left and x1 < left_threshold * 2):
                 track.exit_detected = True
                 track.exit_time = timestamp
                 tracks_to_exit.append(track_id)
