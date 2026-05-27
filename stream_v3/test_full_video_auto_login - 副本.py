@@ -1,12 +1,11 @@
 """
-车辆清洗检测 V3 - 实时模式（集成HTTP上报平台 + 自动登录）
+车辆清洗检测 V3 - 实时模式（集成HTTP上报平台，免登录）
 基于 test_full_video_spatial 副本.py 的已验证架构
-新增：进出场逻辑 + 清洗判定 + HTTP上报平台(自动登录获取token) + 实时播放 + 不生成视频
+新增：进出场逻辑 + 清洗判定 + HTTP上报平台(免登录) + 实时播放 + 不生成视频
 
 上报平台配置：
-  URL: https://api.shznjz.cn/api/AddVehicleManage
+  URL: http://192.168.1.69:8080/deviceRecord
   Method: POST
-  Header: token (通过登录接口自动获取)
   Device ID格式: JUNHE_106_01 (公司名_项目名_设备ID)
 
 车牌检测流程（与spatial版本一致）：
@@ -44,10 +43,7 @@ import numpy as np
 # ============================================================
 # ============ 修改这里 ============
 DEVICE_ID = "JUNHE_106_01"  # 公司名_项目名_设备ID
-REPORT_URL = "https://api.shznjz.cn/api/AddVehicleManage"
-LOGIN_URL = "https://api.shznjz.cn/api/Login"
-LOGIN_USERNAME = "shebeituisong"
-LOGIN_PASSWORD = "rh@123"
+REPORT_URL = "http://192.168.1.69:8080/api/addRecord"
 ENABLE_REPORT = True  # 是否启用上报
 # ==================================
 
@@ -64,65 +60,23 @@ def log(msg, end='\n'):
     log_file.flush()
 
 # ============================================================
-# HTTP登录 + 上报模块
+# HTTP上报模块（免登录）
 # ============================================================
 
 class ReportClient:
-    """车辆进出场数据上报客户端（支持自动登录获取token）"""
+    """车辆进出场数据上报客户端（免登录，直接上报）"""
 
-    def __init__(self, device_id: str, report_url: str, login_url: str,
-                 login_username: str, login_password: str, enable: bool = True):
+    def __init__(self, device_id: str, report_url: str, enable: bool = True):
         self.device_id = device_id
         self.report_url = report_url
-        self.login_url = login_url
-        self.login_username = login_username
-        self.login_password = login_password
         self.enable = enable
         self.success_count = 0
         self.fail_count = 0
-        self.token = None
         self._session = requests.Session()
         self._session.headers.update({
             'Content-Type': 'application/json',
             'User-Agent': 'VehicleWashDetector/1.0'
         })
-
-    def _login(self) -> bool:
-        """登录获取token"""
-        try:
-            payload = {
-                "Login": self.login_username,
-                "pwd": self.login_password
-            }
-            resp = self._session.post(
-                self.login_url,
-                json=payload,
-                timeout=10
-            )
-
-            if resp.status_code == 200:
-                data = resp.json()
-                if data.get("Code") == 1 and "Data" in data:
-                    self.token = data["Data"].get("token")
-                    if self.token:
-                        self._session.headers.update({'token': self.token})
-                        log(f"[Login] ✓ 登录成功，获取到token")
-                        return True
-                    else:
-                        log(f"[Login] ✗ 响应中无token: {data}")
-                else:
-                    log(f"[Login] ✗ 登录失败: {data.get('Message', '未知错误')}")
-            else:
-                log(f"[Login] ✗ HTTP错误: {resp.status_code}")
-
-        except requests.exceptions.ConnectionError:
-            log(f"[Login] ✗ 连接失败: 无法连接到 {self.login_url}")
-        except requests.exceptions.Timeout:
-            log(f"[Login] ✗ 请求超时")
-        except Exception as e:
-            log(f"[Login] ✗ 异常: {e}")
-
-        return False
 
     def _encode_image(self, frame: np.ndarray, quality: int = 85) -> str:
         """将numpy数组编码为base64 JPEG字符串"""
@@ -133,32 +87,27 @@ class ReportClient:
     def report(self, license_plate: str, inouttype: int, iswash: int,
                frame: np.ndarray, datatype: int = 0) -> bool:
         """
-        上报车辆进出场数据（每次上报前强制重新登录）
+        上报车辆进出场数据（免登录，直接POST）
         """
         if not self.enable:
             log(f"[Report] 上报已禁用，跳过: {license_plate}")
             return False
 
-        # ========== 关键修改：每次上报前都重新登录 ==========
-        log(f"[Report] 正在登录获取最新token...")
-        if not self._login():
-            log(f"[Report] 登录失败，跳过上报: {license_plate}")
-            self.fail_count += 1
-            return False
-        # ===================================================
-
         try:
             photo_base64 = self._encode_image(frame)
 
-            payload = [{
-                "device_id": self.device_id,
+            payload = {
+                "deviceId": self.device_id,
                 "licenseplate": license_plate,
                 "inouttype": inouttype,
-                "iswash": iswash,
+                "isWash": iswash,
                 "photo": photo_base64,
-                "datatype": datatype
-            }]
-            log(f"{license_plate}{photo_base64}")
+                "dataType": datatype,
+                "pid": 1,
+                "createBy": "system",
+                "createTime":datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            }
+            
             # 异步上报，不阻塞主线程
             threading.Thread(
                 target=self._do_report,
@@ -173,8 +122,8 @@ class ReportClient:
             self.fail_count += 1
             return False
 
-    def _do_report(self, payload: list, license_plate: str, inouttype: int):
-        """实际执行HTTP请求（此时session里已是最新token）"""
+    def _do_report(self, payload: dict, license_plate: str, inouttype: int):
+        """实际执行HTTP请求"""
         try:
             resp = self._session.post(
                 self.report_url,
@@ -184,7 +133,8 @@ class ReportClient:
 
             if resp.status_code == 200:
                 result = resp.json()
-                if result.get("Code") == 1:
+                # 根据实际接口返回值调整判断逻辑；这里兼容通用成功判断
+                if result.get("Code") == 1 or result.get("code") == 1 or result.get("success") == True:
                     self.success_count += 1
                     inout_str = "进场" if inouttype == 0 else "出场"
                     log(f"[Report] ✓ 上报成功: {license_plate} {inout_str}")
@@ -559,10 +509,9 @@ class EntryExitManager:
 # ============================================================
 
 log("=" * 70)
-log("车辆清洗检测 V3 - 实时模式（集成HTTP上报 + 自动登录）")
+log("车辆清洗检测 V3 - 实时模式（集成HTTP上报，免登录）")
 log(f"Device ID: {DEVICE_ID}")
 log(f"Report URL: {REPORT_URL}")
-log(f"Login URL: {LOGIN_URL}")
 log(f"Report Enabled: {ENABLE_REPORT}")
 log("=" * 70)
 
@@ -654,16 +603,13 @@ try:
     )
     log("  Spatial dedup: spatial=80px, min_detections=10, agreement=0.80, similarity=0.90")
 
-    # 初始化上报客户端（自动登录获取token）
+    # 初始化上报客户端（免登录）
     report_client = ReportClient(
         device_id=DEVICE_ID,
         report_url=REPORT_URL,
-        login_url=LOGIN_URL,
-        login_username=LOGIN_USERNAME,
-        login_password=LOGIN_PASSWORD,
         enable=ENABLE_REPORT
     )
-    log(f"  Report client OK (auto-login)")
+    log(f"  Report client OK (no login)")
 
     entry_exit_mgr = EntryExitManager(
         wash_stop_time=180,
@@ -1001,7 +947,7 @@ display_queue = queue.Queue(maxsize=2)
 def display_thread():
     """独立显示线程 - 不阻塞主处理流水线"""
     log("[Display] Started")
-    window_name = "Vehicle Wash V3 (REALTIME + AUTO LOGIN)"
+    window_name = "Vehicle Wash V3 (REALTIME + NO LOGIN)"
 
     while not stop_event.is_set():
         # 先检查stop_event，避免不必要的队列等待
