@@ -30,6 +30,7 @@ import threading
 import queue
 import base64
 import json
+import io
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -43,8 +44,9 @@ import numpy as np
 # ============================================================
 # ============ 修改这里 ============
 DEVICE_ID = "JUNHE_106_01"  # 公司名_项目名_设备ID
-REPORT_URL = "http://192.168.1.69:8080/api/addRecord"
+REPORT_URL = "http://47.94.205.19:8080/api/addRecord"
 ENABLE_REPORT = True  # 是否启用上报
+OSS_UPLOAD_URL = "http://47.94.205.19:9981/api/upload"
 # ==================================
 
 log_file = open('full_video_test_v3_report.log', 'w', encoding='utf-8')
@@ -66,9 +68,10 @@ def log(msg, end='\n'):
 class ReportClient:
     """车辆进出场数据上报客户端（免登录，直接上报）"""
 
-    def __init__(self, device_id: str, report_url: str, enable: bool = True):
+    def __init__(self, device_id: str, report_url: str, oss_url: str, enable: bool = True):
         self.device_id = device_id
         self.report_url = report_url
+        self.oss_url = oss_url
         self.enable = enable
         self.success_count = 0
         self.fail_count = 0
@@ -78,12 +81,52 @@ class ReportClient:
             'User-Agent': 'VehicleWashDetector/1.0'
         })
 
-    def _encode_image(self, frame: np.ndarray, quality: int = 85) -> str:
-        """将numpy数组编码为base64 JPEG字符串"""
-        encode_param = [cv2.IMWRITE_JPEG_QUALITY, quality]
-        _, buffer = cv2.imencode('.jpg', frame, encode_param)
-        return base64.b64encode(buffer).decode('utf-8')
+    def _upload_to_oss(self, frame: np.ndarray, license_plate: str, quality: int = 65) -> Optional[str]:
+        """将图片上传至OSS，返回URL（上传时不带header，使用独立requests）"""
+        try:
+            encode_param = [cv2.IMWRITE_JPEG_QUALITY, quality]
+            ret, buffer = cv2.imencode('.jpg', frame, encode_param)
+            if not ret:
+                log(f"[OSS] 图片编码失败: {license_plate}")
+                return None
 
+            filename = f"{license_plate}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}.jpg"
+
+            # 关键修改：用 io.BytesIO 包装 bytes
+            files = {
+                'file': (filename, io.BytesIO(buffer.tobytes()), 'image/jpeg')
+            }
+
+            # 关键修改：用独立 requests.post，不用带 JSON header 的 session
+            resp = requests.post(
+                self.oss_url,
+                files=files,
+                timeout=30
+            )
+
+            if resp.status_code == 200:
+                result = resp.json()
+                oss_url = None
+                if isinstance(result, dict) and 'data' in result and isinstance(result['data'], dict):
+                    oss_url = result['data'].get('url')
+                if oss_url:
+                    log(f"[OSS] ✓ 上传成功: {license_plate}, URL={oss_url[:80]}...")
+                    return oss_url
+                else:
+                    log(f"[OSS] ✗ 响应中无URL: {result}")
+                    return None
+            else:
+                log(f"[OSS] ✗ HTTP错误: {resp.status_code}, {resp.text[:200]}")
+                return None
+
+        except requests.exceptions.ConnectionError:
+            log(f"[OSS] ✗ 连接失败: 无法连接到 {self.oss_url}")
+        except requests.exceptions.Timeout:
+            log(f"[OSS] ✗ 请求超时")
+        except Exception as e:
+            log(f"[OSS] ✗ 异常: {e}")
+
+        return None
     def report(self, license_plate: str, inouttype: int, iswash: int,
                frame: np.ndarray, datatype: int = 0) -> bool:
         """
@@ -94,14 +137,21 @@ class ReportClient:
             return False
 
         try:
-            photo_base64 = self._encode_image(frame)
+            # 步骤1：上传图片到OSS
+            log(f"[Report] 正在上传图片到OSS: {license_plate}")
+            photo_url = self._upload_to_oss(frame, license_plate)
+
+            if not photo_url:
+                log(f"[Report] OSS上传失败，跳过上报: {license_plate}")
+                self.fail_count += 1
+                return False
 
             payload = {
                 "deviceId": self.device_id,
                 "licenseplate": license_plate,
                 "inouttype": inouttype,
                 "isWash": iswash,
-                "photo": photo_base64,
+                "photo": photo_url,
                 "dataType": datatype,
                 "pid": 1,
                 "createBy": "system",
@@ -134,7 +184,7 @@ class ReportClient:
             if resp.status_code == 200:
                 result = resp.json()
                 # 根据实际接口返回值调整判断逻辑；这里兼容通用成功判断
-                if result.get("Code") == 1 or result.get("code") == 1 or result.get("success") == True:
+                if result.get("Code") == 200 or result.get("code") == 200 or result.get("success") == True:
                     self.success_count += 1
                     inout_str = "进场" if inouttype == 0 else "出场"
                     log(f"[Report] ✓ 上报成功: {license_plate} {inout_str}")
@@ -607,6 +657,7 @@ try:
     report_client = ReportClient(
         device_id=DEVICE_ID,
         report_url=REPORT_URL,
+        oss_url=OSS_UPLOAD_URL,
         enable=ENABLE_REPORT
     )
     log(f"  Report client OK (no login)")
@@ -1118,7 +1169,7 @@ def result_processing_thread():
                 y_offset += 25
 
             # 每3帧发送一次到显示队列
-            if frame_count % 3 == 0:
+            if frame_count % 1 == 0:
                 try:
                     display_frame = cv2.resize(result_frame, (1280, 720))
                     display_queue.put(display_frame, block=False)

@@ -1,0 +1,58 @@
+# 车辆清洗检测配置 V3
+
+# 检测器配置
+detector:
+  name: "vehicle_wash"
+  type: "vehicle_wash"
+  enabled: true
+
+  # 模型配置
+  model:
+    path: "models/yolov8n.pt"
+    device: "auto"
+    conf_threshold: 0.5
+    iou_threshold: 0.45
+    img_size: 640
+
+  # 跟踪参数
+  tracking:
+    iou_threshold: 0.5
+    max_lost_frames: 30
+
+# 进出场判定参数
+entry_exit:
+  exit_left_threshold: 0.05
+  exit_wait_time: 60
+
+# 清洗区域配置（归一化坐标 0-1）
+wash_zone:
+  x1: 0.1
+  y1: 0.3
+  x2: 0.7
+  y2: 0.8
+
+# 清洗判定参数
+wash:
+  stop_time: 180
+
+# 图片保存
+images:
+  enabled: true
+  save_path: "storage/vehicle_wash"
+
+# 数据库配置
+database:
+  enabled: true
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: "password"
+  database: "vehicle_wash_db"
+  table_name: "vehicle_wash_records"
+
+# 视频流配置
+streams:
+  - id: "wash_cam_01"
+    name: "清洗区入口"
+    url: "rtsp://example.com/wash_entry"
+    enabled: true
