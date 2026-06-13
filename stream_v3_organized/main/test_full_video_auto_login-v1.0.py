@@ -63,6 +63,13 @@ STREAM_FPS = 25          # 推流帧率
 STREAM_BITRATE = "1500k" # 推流码率（降低码率适配云服务器带宽）
 # ==================================
 
+# ============ 视频流重连配置 ============
+STREAM_RECONNECT_ENABLED = True   # 是否启用视频流自动重连
+STREAM_RECONNECT_MAX_RETRIES = 50  # 最大重连次数（0=无限）
+STREAM_RECONNECT_INTERVAL = 5.0   # 重连间隔（秒）
+STREAM_RECONNECT_RESET_INTERVAL = 30.0  # 成功读取多久后重置重连计数（秒）
+# ======================================
+
 log_file = open('full_video_test_v3_report.log', 'w', encoding='utf-8')
 
 def log(msg, end='\n'):
@@ -649,7 +656,6 @@ try:
     
     from vehicle_wash_detector import VehicleWashDetector
     from spatial_plate_deduplicator import SpatialPlateDeduplicator
-    from plate_utils import validate_and_filter_plate
     from plate_validator_v2 import validate_plate_v2
     from vehicle_tracker import VehicleTracker
     log("  Import OK")
@@ -775,27 +781,74 @@ stats = {
 }
 
 def video_reader_thread():
-    global frame_idx
+    global frame_idx, cap
     log("[Video Reader] Started (REALTIME)")
     next_frame_time = time.time()
     consecutive_failures = 0
+    reconnect_count = 0
+    last_success_time = time.time()
 
     while not stop_event.is_set():
         ret, frame = cap.read()
         if not ret:
             consecutive_failures += 1
-            if IS_STREAM and consecutive_failures < 10:
-                log(f"[Video Reader] Frame read failed ({consecutive_failures}/10), retrying...")
-                time.sleep(0.5)
-                continue
+
+            # 检查是否需要重连（仅对网络流）
+            if IS_STREAM and STREAM_RECONNECT_ENABLED:
+                # 检查是否超过最大重连次数
+                if STREAM_RECONNECT_MAX_RETRIES > 0 and reconnect_count >= STREAM_RECONNECT_MAX_RETRIES:
+                    log(f"[Video Reader] Max reconnect attempts ({STREAM_RECONNECT_MAX_RETRIES}) reached, giving up")
+                    break
+
+                # 尝试重连
+                if consecutive_failures >= 10:
+                    reconnect_count += 1
+                    log(f"[Video Reader] Stream disconnected, reconnecting ({reconnect_count}/{STREAM_RECONNECT_MAX_RETRIES if STREAM_RECONNECT_MAX_RETRIES > 0 else '∞'})...")
+
+                    # 释放旧连接
+                    try:
+                        cap.release()
+                    except:
+                        pass
+
+                    # 等待后重新连接
+                    time.sleep(STREAM_RECONNECT_INTERVAL)
+
+                    # 创建新的 VideoCapture
+                    cap = cv2.VideoCapture(VIDEO_PATH)
+                    if cap.isOpened():
+                        log("[Video Reader] Stream reconnected successfully")
+                        consecutive_failures = 0
+                        # 重置帧率相关参数
+                        new_fps = cap.get(cv2.CAP_PROP_FPS)
+                        if new_fps > 0:
+                            global frame_interval
+                            frame_interval = 1.0 / new_fps
+                        continue
+                    else:
+                        log("[Video Reader] Reconnect failed, will retry...")
+                        continue
+                else:
+                    # 还没达到10次失败，先简单重试
+                    log(f"[Video Reader] Frame read failed ({consecutive_failures}/10), retrying...")
+                    time.sleep(0.5)
+                    continue
             else:
+                # 非网络流或重连禁用
                 if IS_STREAM:
-                    log("[Video Reader] Stream disconnected after 10 retries")
+                    log("[Video Reader] Stream disconnected, reconnect disabled")
                 else:
                     log("[Video Reader] Video ended")
                 break
 
+        # 成功读取帧
         consecutive_failures = 0
+        last_success_time = time.time()
+
+        # 检查是否需要重置重连计数（长时间成功读取后）
+        if reconnect_count > 0 and (time.time() - last_success_time) > STREAM_RECONNECT_RESET_INTERVAL:
+            log(f"[Video Reader] Connection stable for {STREAM_RECONNECT_RESET_INTERVAL}s, reset reconnect counter")
+            reconnect_count = 0
 
         try:
             frame_queue.put((frame_idx, frame), block=True, timeout=1.0)
@@ -870,16 +923,8 @@ def plate_detection_worker(args):
     if plate_result and plate_result[0]:
         plate_text, plate_bbox, plate_color, color_conf = plate_result
 
-        # 使用V2验证器（基于颜色）
+        # 使用V2验证器（基于颜色）- 只使用V2验证，不再使用V1后备
         is_valid, cleaned, reason = validate_plate_v2(plate_text, plate_color, color_conf)
-
-        if not is_valid:
-            # V2验证失败，尝试V1验证器作为后备
-            is_valid_v1, reason_v1, cleaned_v1 = validate_and_filter_plate(plate_text)
-            if is_valid_v1 and cleaned_v1:
-                is_valid = True
-                cleaned = cleaned_v1
-                reason = reason_v1 + " (V1 fallback)"
 
         if is_valid and cleaned:
             confirmed_vehicle = spatial_dedup.add_detection(
