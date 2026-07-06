@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from collections import defaultdict
 import numpy as np
 
-from plate_utils import PlateValidator, validate_and_filter_plate
+from plate_utils import PlateValidator, validate_and_filter_plate, plate_similarity
 from plate_validator_v2 import PlateValidatorV2, PlateColor
 import sys
 from pathlib import Path
@@ -432,23 +432,8 @@ class SpatialPlateDeduplicator:
         return None
     
     def _calculate_plate_similarity(self, plate1: str, plate2: str) -> float:
-        """计算两个车牌的相似度 - 严格版，不加后缀加分"""
-        if not plate1 or not plate2:
-            return 0.0
-        
-        if plate1 == plate2:
-            return 1.0
-        
-        # 编辑距离
-        distance = self._levenshtein_distance(plate1, plate2)
-        max_len = max(len(plate1), len(plate2))
-        
-        if max_len == 0:
-            return 1.0
-        
-        similarity = 1.0 - (distance / max_len)
-        
-        return similarity
+        """统一复用带缓存的车牌相似度实现"""
+        return plate_similarity(plate1, plate2)
     
     def _levenshtein_distance(self, s1: str, s2: str) -> int:
         """计算编辑距离"""

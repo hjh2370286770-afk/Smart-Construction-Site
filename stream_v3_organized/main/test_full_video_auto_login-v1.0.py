@@ -32,11 +32,12 @@ import base64
 import json
 import io
 import requests
+import argparse
 from pathlib import Path
 from datetime import datetime
 from dataclasses import dataclass, field
 from typing import Optional, Dict, List, Tuple
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 
 # 导入推流模块 (相对路径)
@@ -45,32 +46,133 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / 'streaming'))
 from stream_publisher import FFmpegStreamPublisher
 
+
 # ============================================================
-# 上报平台配置
+# 命令行参数与配置文件解析
+# ============================================================
+
+def load_config(config_path: Optional[str] = None) -> dict:
+    """加载 YAML/JSON 配置文件，未提供时返回空字典"""
+    if not config_path:
+        return {}
+    p = Path(config_path)
+    if not p.exists():
+        print(f"[Config] 配置文件不存在: {config_path}")
+        return {}
+    try:
+        if p.suffix.lower() in ('.yaml', '.yml'):
+            import yaml
+            with open(p, 'r', encoding='utf-8') as f:
+                return yaml.safe_load(f) or {}
+        elif p.suffix.lower() == '.json':
+            with open(p, 'r', encoding='utf-8') as f:
+                return json.load(f) or {}
+        else:
+            print(f"[Config] 不支持的配置文件格式: {p.suffix}")
+            return {}
+    except Exception as e:
+        print(f"[Config] 加载配置文件失败: {e}")
+        return {}
+
+
+def get_nested(config: dict, *keys, default=None):
+    """安全读取嵌套配置"""
+    cur = config
+    for k in keys:
+        if isinstance(cur, dict) and k in cur:
+            cur = cur[k]
+        else:
+            return default
+    return cur
+
+
+parser = argparse.ArgumentParser(description='车辆清洗检测 V3 - 多项目配置版')
+parser.add_argument('--config', '-c', type=str, default=None,
+                    help='项目配置文件路径 (YAML/JSON)')
+parser.add_argument('--device-id', type=str, default=None,
+                    help='设备/项目标识，如 JUNHE_106_01')
+parser.add_argument('--video', type=str, default=None,
+                    help='视频源路径或 URL')
+parser.add_argument('--stream-url', type=str, default=None,
+                    help='推流输出地址')
+parser.add_argument('--report-pid', type=int, default=None,
+                    help='上报平台 pid')
+parser.add_argument('--exit-direction', type=str, default=None,
+                    choices=['left', 'bottom'],
+                    help='车辆出场方向: left 或 bottom')
+parser.add_argument('--no-display', action='store_true',
+                    help='不显示 OpenCV 窗口（多实例同时运行时建议开启）')
+args = parser.parse_args()
+
+file_config = load_config(args.config)
+
+
+def cfg(*keys, default=None):
+    """优先级：命令行参数 > 配置文件 > 默认值"""
+    # 1. 命令行参数（平铺到 args 的键）
+    if len(keys) == 1:
+        arg_val = getattr(args, keys[0].replace('-', '_'), None)
+        if arg_val is not None:
+            return arg_val
+    # 2. 配置文件
+    val = get_nested(file_config, *keys, default=None)
+    if val is not None:
+        return val
+    # 3. 默认值
+    return default
+
+# ============================================================
+# 上报平台配置（可通过命令行或配置文件覆盖）
 # ============================================================
 # ============ 修改这里 ============
-DEVICE_ID = "JUNHE_106_01"  # 公司名_项目名_设备ID
-REPORT_URL = "http://47.94.205.19:8080/api/addRecord"
-ENABLE_REPORT = True  # 是否启用上报
-OSS_UPLOAD_URL = "http://47.94.205.19:9981/api/upload"
+PROJECT_NAME = cfg('project_name', default='JUNHE_106')
+DEVICE_ID = cfg('device_id', default='JUNHE_106_01')  # 公司名_项目名_设备ID
+REPORT_URL = cfg('report_url', default='http://47.94.205.19:8080/api/addRecord')
+ENABLE_REPORT = cfg('enable_report', default=True)  # 是否启用上报
+OSS_UPLOAD_URL = cfg('oss_upload_url', default='http://47.94.205.19:9981/api/upload')
+REPORT_PID = cfg('report_pid', default=1)  # 上报平台 pid
 
 # ============ 推流配置 ============
-ENABLE_STREAMING = True  # 是否启用推流
-STREAM_OUTPUT_URL = "rtmp://121.199.7.83:1935/live/vehicle_wash"  # 推流地址
-STREAM_WIDTH = 1280      # 推流分辨率宽
-STREAM_HEIGHT = 720      # 推流分辨率高
-STREAM_FPS = 25          # 推流帧率
-STREAM_BITRATE = "1500k" # 推流码率（降低码率适配云服务器带宽）
+ENABLE_STREAMING = cfg('enable_streaming', default=True)  # 是否启用推流
+STREAM_OUTPUT_URL = cfg('stream_output_url', default='rtmp://121.199.7.83:1935/live/vehicle_wash')  # 推流地址
+STREAM_WIDTH = cfg('stream_width', default=1280)      # 推流分辨率宽
+STREAM_HEIGHT = cfg('stream_height', default=720)      # 推流分辨率高
+STREAM_FPS = cfg('stream_fps', default=25)          # 推流帧率
+STREAM_BITRATE = cfg('stream_bitrate', default='1500k') # 推流码率（降低码率适配云服务器带宽）
+STREAM_QUEUE_SIZE = cfg('stream_queue_size', default=20)   # 推流缓存队列，避免原始帧堆积占满内存
 # ==================================
 
+# ============ 资源并发配置 ============
+REPORT_MAX_WORKERS = cfg('report_max_workers', default=2)   # 上报线程池大小，避免每次事件都创建新线程
+# ====================================
+
 # ============ 视频流重连配置 ============
-STREAM_RECONNECT_ENABLED = True   # 是否启用视频流自动重连
-STREAM_RECONNECT_MAX_RETRIES = 50  # 最大重连次数（0=无限）
-STREAM_RECONNECT_INTERVAL = 5.0   # 重连间隔（秒）
-STREAM_RECONNECT_RESET_INTERVAL = 30.0  # 成功读取多久后重置重连计数（秒）
+STREAM_RECONNECT_ENABLED = cfg('stream_reconnect_enabled', default=True)   # 是否启用视频流自动重连
+STREAM_RECONNECT_MAX_RETRIES = cfg('stream_reconnect_max_retries', default=50)  # 最大重连次数（0=无限）
+STREAM_RECONNECT_INTERVAL = cfg('stream_reconnect_interval', default=5.0)   # 重连间隔（秒）
+STREAM_RECONNECT_RESET_INTERVAL = cfg('stream_reconnect_reset_interval', default=30.0)  # 成功读取多久后重置重连计数（秒）
 # ======================================
 
-log_file = open('full_video_test_v3_report.log', 'w', encoding='utf-8')
+# ============ 进出场与清洗配置 ============
+EXIT_DIRECTION = cfg('exit_direction', default='left')  # 车辆出场方向：'left' 或 'bottom'
+EXIT_EDGE_THRESHOLD = cfg('exit_edge_threshold', default=0.05)  # 出场边缘阈值
+EXIT_WAIT_TIME = cfg('exit_wait_time', default=60)  # 出场等待时间（秒）
+WASH_STOP_TIME = cfg('wash_stop_time', default=30)  # 清洗停止判定时间（秒）
+WASH_ZONE = cfg('wash_zone', default={'x1': 0.1, 'y1': 0.3, 'x2': 0.7, 'y2': 0.8})
+PLATE_MERGE_THRESHOLD = cfg('plate_merge_threshold', default=0.60)
+# =========================================
+
+# ============ 视频源配置 ============
+VIDEO_PATH = cfg('video_path', default='rtmp://rtmp05open.ys7.com:1935/v3/openlive/BK1948130_2_1?expire=1809950641&id=975488750482890752&t=69761f54257288b0df5f7db26a58a8996a6501f7cf1a8475ee42bd6f3ef1f42c&ev=101')
+# ==================================
+
+# ============ 运行模式配置 ============
+NO_DISPLAY = cfg('no_display', default=False)  # 是否禁用本地显示窗口
+# =====================================
+
+# 每个项目使用独立的日志和数据库文件，避免多实例冲突
+log_file_path = cfg('log_file', default=f'full_video_test_v3_report_{DEVICE_ID}.log')
+log_file = open(log_file_path, 'w', encoding='utf-8')
 
 def log(msg, end='\n'):
     timestamp = datetime.now().strftime('%H:%M:%S')
@@ -96,11 +198,17 @@ class ReportClient:
         self.enable = enable
         self.success_count = 0
         self.fail_count = 0
+        self._lock = threading.Lock()
+        self._closed = False
         self._session = requests.Session()
         self._session.headers.update({
             'Content-Type': 'application/json',
             'User-Agent': 'VehicleWashDetector/1.0'
         })
+        self._executor = ThreadPoolExecutor(
+            max_workers=REPORT_MAX_WORKERS,
+            thread_name_prefix="report-client"
+        )
 
     def _upload_to_oss(self, frame: np.ndarray, license_plate: str, quality: int = 65) -> Optional[str]:
         """将图片上传至OSS，返回URL（上传时不带header，使用独立requests）"""
@@ -124,21 +232,23 @@ class ReportClient:
                 files=files,
                 timeout=30
             )
-
-            if resp.status_code == 200:
-                result = resp.json()
-                oss_url = None
-                if isinstance(result, dict) and 'data' in result and isinstance(result['data'], dict):
-                    oss_url = result['data'].get('url')
-                if oss_url:
-                    log(f"[OSS] ✓ 上传成功: {license_plate}, URL={oss_url[:80]}...")
-                    return oss_url
+            try:
+                if resp.status_code == 200:
+                    result = resp.json()
+                    oss_url = None
+                    if isinstance(result, dict) and 'data' in result and isinstance(result['data'], dict):
+                        oss_url = result['data'].get('url')
+                    if oss_url:
+                        log(f"[OSS] ✓ 上传成功: {license_plate}, URL={oss_url[:80]}...")
+                        return oss_url
+                    else:
+                        log(f"[OSS] ✗ 响应中无URL: {result}")
+                        return None
                 else:
-                    log(f"[OSS] ✗ 响应中无URL: {result}")
+                    log(f"[OSS] ✗ HTTP错误: {resp.status_code}, {resp.text[:200]}")
                     return None
-            else:
-                log(f"[OSS] ✗ HTTP错误: {resp.status_code}, {resp.text[:200]}")
-                return None
+            finally:
+                resp.close()
 
         except requests.exceptions.ConnectionError:
             log(f"[OSS] ✗ 连接失败: 无法连接到 {self.oss_url}")
@@ -148,6 +258,15 @@ class ReportClient:
             log(f"[OSS] ✗ 异常: {e}")
 
         return None
+
+    def _mark_success(self):
+        with self._lock:
+            self.success_count += 1
+
+    def _mark_fail(self):
+        with self._lock:
+            self.fail_count += 1
+
     def report(self, license_plate: str, inouttype: int, iswash: int,
                frame: np.ndarray, datatype: int = 0) -> bool:
         """
@@ -157,41 +276,56 @@ class ReportClient:
             log(f"[Report] 上报已禁用，跳过: {license_plate}")
             return False
 
-        try:
-            # 步骤1：上传图片到OSS
-            log(f"[Report] 正在上传图片到OSS: {license_plate}")
-            photo_url = self._upload_to_oss(frame, license_plate)
+        if frame is None:
+            log(f"[Report] 无抓拍帧，跳过: {license_plate}")
+            self._mark_fail()
+            return False
 
-            if not photo_url:
-                log(f"[Report] OSS上传失败，跳过上报: {license_plate}")
+        with self._lock:
+            if self._closed:
+                log(f"[Report] 客户端已关闭，跳过: {license_plate}")
                 self.fail_count += 1
                 return False
 
-            payload = {
-                "deviceId": self.device_id,
-                "licenseplate": license_plate,
-                "inouttype": inouttype,
-                "isWash": iswash,
-                "photo": photo_url,
-                "dataType": datatype,
-                "pid": 1,
-                "createBy": "system",
-                "createTime":datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            }
-            
-            # 异步上报，不阻塞主线程
-            threading.Thread(
-                target=self._do_report,
-                args=(payload, license_plate, inouttype),
-                daemon=True
-            ).start()
-
+        try:
+            self._executor.submit(
+                self._report_worker,
+                license_plate,
+                inouttype,
+                iswash,
+                frame,
+                datatype
+            )
             return True
 
         except Exception as e:
             log(f"[Report] 构建上报数据失败 {license_plate}: {e}")
-            self.fail_count += 1
+            self._mark_fail()
             return False
+
+    def _report_worker(self, license_plate: str, inouttype: int, iswash: int,
+                       frame: np.ndarray, datatype: int = 0):
+        log(f"[Report] 正在上传图片到OSS: {license_plate}")
+        photo_url = self._upload_to_oss(frame, license_plate)
+
+        if not photo_url:
+            log(f"[Report] OSS上传失败，跳过上报: {license_plate}")
+            self._mark_fail()
+            return
+
+        payload = {
+            "deviceId": self.device_id,
+            "licenseplate": license_plate,
+            "inouttype": inouttype,
+            "isWash": iswash,
+            "photo": photo_url,
+            "dataType": datatype,
+            "pid": REPORT_PID,
+            "createBy": "system",
+            "createTime": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+        self._do_report(payload, license_plate, inouttype)
 
     def _do_report(self, payload: dict, license_plate: str, inouttype: int):
         """实际执行HTTP请求"""
@@ -201,37 +335,50 @@ class ReportClient:
                 json=payload,
                 timeout=10
             )
-
-            if resp.status_code == 200:
-                result = resp.json()
-                # 根据实际接口返回值调整判断逻辑；这里兼容通用成功判断
-                if result.get("Code") == 200 or result.get("code") == 200 or result.get("success") == True:
-                    self.success_count += 1
-                    inout_str = "进场" if inouttype == 0 else "出场"
-                    log(f"[Report] ✓ 上报成功: {license_plate} {inout_str}")
+            try:
+                if resp.status_code == 200:
+                    result = resp.json()
+                    # 根据实际接口返回值调整判断逻辑；这里兼容通用成功判断
+                    if result.get("Code") == 200 or result.get("code") == 200 or result.get("success") == True:
+                        self._mark_success()
+                        inout_str = "进场" if inouttype == 0 else "出场"
+                        log(f"[Report] ✓ 上报成功: {license_plate} {inout_str}")
+                    else:
+                        self._mark_fail()
+                        log(f"[Report] ✗ 上报失败: {license_plate}, {result}")
                 else:
-                    self.fail_count += 1
-                    log(f"[Report] ✗ 上报失败: {license_plate}, {result}")
-            else:
-                self.fail_count += 1
-                log(f"[Report] ✗ HTTP错误: {license_plate}, {resp.status_code}")
+                    self._mark_fail()
+                    log(f"[Report] ✗ HTTP错误: {license_plate}, {resp.status_code}")
+            finally:
+                resp.close()
 
         except requests.exceptions.ConnectionError:
-            self.fail_count += 1
+            self._mark_fail()
             log(f"[Report] ✗ 连接失败: 无法连接到 {self.report_url}")
         except requests.exceptions.Timeout:
-            self.fail_count += 1
+            self._mark_fail()
             log(f"[Report] ✗ 请求超时: {license_plate}")
         except Exception as e:
-            self.fail_count += 1
+            self._mark_fail()
             log(f"[Report] ✗ 异常: {license_plate}, {e}")
 
     def get_stats(self) -> dict:
+        with self._lock:
+            success = self.success_count
+            fail = self.fail_count
         return {
-            'success': self.success_count,
-            'fail': self.fail_count,
-            'total': self.success_count + self.fail_count
+            'success': success,
+            'fail': fail,
+            'total': success + fail
         }
+
+    def close(self):
+        with self._lock:
+            if self._closed:
+                return
+            self._closed = True
+        self._executor.shutdown(wait=True)
+        self._session.close()
 
 
 # ============================================================
@@ -262,10 +409,12 @@ class EntryExitManager:
     def __init__(self, wash_stop_time=180, exit_wait_time=60,
                  exit_left_threshold=0.05, wash_zone=None,
                  plate_merge_threshold=0.60,
-                 report_client: Optional[ReportClient] = None):
+                 report_client: Optional[ReportClient] = None,
+                 exit_direction='left'):
         self.wash_stop_time = wash_stop_time
         self.exit_wait_time = exit_wait_time
         self.exit_left_threshold = exit_left_threshold
+        self.exit_direction = exit_direction.lower() if exit_direction else 'left'
         self.wash_zone = wash_zone or {'x1': 0.1, 'y1': 0.3, 'x2': 0.7, 'y2': 0.8}
         self.plate_merge_threshold = plate_merge_threshold
 
@@ -288,7 +437,8 @@ class EntryExitManager:
 
     def set_current_frame(self, frame: np.ndarray):
         """设置当前帧，用于抓拍上报"""
-        self.current_frame = frame.copy() if frame is not None else None
+        # 仅保留引用，真正需要上报时再复制，避免每帧额外产生一份整图副本
+        self.current_frame = frame if frame is not None else None
 
     def set_db(self, db):
         self.db = db
@@ -413,11 +563,12 @@ class EntryExitManager:
                                     log(f"车辆在清洗区域移动，计时重置: 车牌={similar_plate} (移动: {x_range:.0f}, {y_range:.0f})")
                                     record.wash_start_time = None
 
-            # 出场检测
-            if self._is_near_left_edge(bbox, frame_width):
+            # 出场检测（根据配置方向）
+            if self._is_near_exit_edge(bbox, frame_width, frame_height):
                 if similar_plate not in self.left_disappear_time:
                     self.left_disappear_time[similar_plate] = current_time
-                    log(f"车辆到达画面左侧: 车牌={similar_plate}")
+                    edge_name = "下方" if self.exit_direction == 'bottom' else "左侧"
+                    log(f"车辆到达画面{edge_name}: 车牌={similar_plate}")
             else:
                 if similar_plate in self.left_disappear_time:
                     del self.left_disappear_time[similar_plate]
@@ -469,6 +620,7 @@ class EntryExitManager:
                 frame=record.entry_frame,
                 datatype=0
             )
+            record.entry_frame = None
 
         return record
 
@@ -510,6 +662,7 @@ class EntryExitManager:
                             frame=record.exit_frame,
                             datatype=0
                         )
+                        record.exit_frame = None
 
                     del self.left_disappear_time[plate]
 
@@ -518,24 +671,23 @@ class EntryExitManager:
     def check_missing_vehicles(self, confirmed_plates: List[str], frame_shape: Tuple):
         current_time = datetime.now()
         frame_height, frame_width = frame_shape[:2]
+        confirmed_roots = {
+            self.plate_variants.get(cp, cp)
+            for cp in confirmed_plates
+        }
 
         for plate, record in self.records.items():
             if record.exit_time is not None:
                 continue
 
-            # 检查该记录的主车牌或其变体是否在当前帧被确认
-            is_confirmed_this_frame = False
-            for cp in confirmed_plates:
-                if cp == plate or self.plate_variants.get(cp) == plate:
-                    is_confirmed_this_frame = True
-                    break
-            if is_confirmed_this_frame:
+            if plate in confirmed_roots:
                 continue
 
-            if record.last_bbox and self._is_near_left_edge(record.last_bbox, frame_width):
+            if record.last_bbox and self._is_near_exit_edge(record.last_bbox, frame_width, frame_height):
                 if plate not in self.left_disappear_time:
                     self.left_disappear_time[plate] = current_time
-                    log(f"车辆从左侧消失: 车牌={plate}")
+                    edge_name = "下方" if self.exit_direction == 'bottom' else "左侧"
+                    log(f"车辆从{edge_name}消失: 车牌={plate}")
 
     def _is_in_wash_zone(self, bbox, frame_width, frame_height):
         x1, y1, x2, y2 = bbox
@@ -554,8 +706,11 @@ class EntryExitManager:
         ys = [p[1] for p in recent]
         return (max(xs) - min(xs)) < 30 and (max(ys) - min(ys)) < 30
 
-    def _is_near_left_edge(self, bbox, frame_width):
+    def _is_near_exit_edge(self, bbox, frame_width, frame_height):
         x1, y1, x2, y2 = bbox
+        if self.exit_direction == 'bottom':
+            return y1 > frame_height * (1 - self.exit_left_threshold)
+        # 默认左侧出场
         return x2 < frame_width * self.exit_left_threshold
 
     def get_active_records(self):
@@ -569,7 +724,7 @@ class EntryExitManager:
             'total_entries': self.total_entries,
             'total_exits': self.total_exits,
             'washed_count': self.washed_count,
-            'active_vehicles': len(self.get_active_records()),
+            'active_vehicles': sum(1 for r in self.records.values() if r.exit_time is None),
             'pending_exit': len(self.left_disappear_time),
             'wash_rate': self.washed_count / self.total_exits if self.total_exits > 0 else 0,
         }
@@ -581,19 +736,18 @@ class EntryExitManager:
 
 log("=" * 70)
 log("车辆清洗检测 V3 - 实时模式（集成HTTP上报，免登录）")
-log(f"Device ID: {DEVICE_ID}")
-log(f"Report URL: {REPORT_URL}")
+log(f"Project: {PROJECT_NAME}, Device ID: {DEVICE_ID}")
+log(f"Exit Direction: {EXIT_DIRECTION}")
+log(f"Report URL: {REPORT_URL}, PID: {REPORT_PID}")
 log(f"Report Enabled: {ENABLE_REPORT}")
 log(f"Stream Enabled: {ENABLE_STREAMING}")
 if ENABLE_STREAMING:
     log(f"Stream URL: {STREAM_OUTPUT_URL}")
     log(f"Stream Resolution: {STREAM_WIDTH}x{STREAM_HEIGHT} @ {STREAM_FPS}fps")
+log(f"Log File: {log_file_path}")
 log("=" * 70)
 
-# 视频源配置：文件或RTMP流
-# VIDEO_PATH = r"C:\Users\Admini503\OneDrive\文档\xwechat_files\wxid_je5m1ms8edvj22_dcf2\msg\video\2026-05\7324d4bdc9a1acbf87d5f447eba3684c.mp4"
-VIDEO_PATH = "rtmp://rtmp05open.ys7.com:1935/v3/openlive/BK1948130_2_1?expire=1809950641&id=975488750482890752&t=69761f54257288b0df5f7db26a58a8996a6501f7cf1a8475ee42bd6f3ef1f42c&ev=101"
-
+# 视频源已在上方的 cfg 中配置
 IS_STREAM = VIDEO_PATH.startswith(('rtmp://', 'rtsp://', 'http://', 'https://'))
 
 log(f"\nVideo Source: {VIDEO_PATH}")
@@ -631,6 +785,10 @@ if not IS_STREAM and frame_count > 0:
     log(f"  Duration: {frame_count/fps:.1f}s")
 else:
     log(f"  Mode: Live stream")
+
+report_client = None
+db = None
+stream_publisher = None
 
 DETECT_WIDTH = 1280
 DETECT_HEIGHT = int(height * DETECT_WIDTH / width)
@@ -697,26 +855,29 @@ try:
     log(f"  Report client OK (no login)")
 
     entry_exit_mgr = EntryExitManager(
-        wash_stop_time=180,
-        exit_wait_time=60,
-        exit_left_threshold=0.05,
-        wash_zone={'x1': 0.1, 'y1': 0.3, 'x2': 0.7, 'y2': 0.8},
-        plate_merge_threshold=0.60,  # 方案2: 强车牌合并阈值
-        report_client=report_client
+        wash_stop_time=WASH_STOP_TIME,
+        exit_wait_time=EXIT_WAIT_TIME,
+        exit_left_threshold=EXIT_EDGE_THRESHOLD,
+        wash_zone=WASH_ZONE,
+        plate_merge_threshold=PLATE_MERGE_THRESHOLD,
+        report_client=report_client,
+        exit_direction=EXIT_DIRECTION
     )
-    log("  Entry/Exit: exit_wait=60s, wash_stop=180s, plate_merge=0.60 (with report)")
+    log(f"  Entry/Exit: direction={EXIT_DIRECTION}, exit_wait={EXIT_WAIT_TIME}s, wash_stop={WASH_STOP_TIME}s, plate_merge={PLATE_MERGE_THRESHOLD} (with report)")
 
     vehicle_tracker = VehicleTracker(
         iou_threshold=0.3,
         max_miss_frames=5,
-        exit_left_threshold=0.05
+        exit_left_threshold=EXIT_EDGE_THRESHOLD,
+        exit_direction=EXIT_DIRECTION
     )
-    log("  Vehicle Tracker: IOU=0.3, max_miss=5 frames")
+    log(f"  Vehicle Tracker: IOU=0.3, max_miss=5 frames, exit_direction={EXIT_DIRECTION}")
 
+    db_file = cfg('db_path', default=f'vehicle_wash_{DEVICE_ID}.db')
     db_config = {
-        'enabled': True,  # ← 启用数据库
-        'db_path': 'vehicle_wash.db',  # SQLite数据库文件路径
-        'table_name': 'vehicle_wash_records',
+        'enabled': cfg('db_enabled', default=True),
+        'db_path': db_file,
+        'table_name': cfg('db_table_name', default='vehicle_wash_records'),
     }
     if db_config.get('enabled', False):
         try:
@@ -743,7 +904,8 @@ try:
                 height=STREAM_HEIGHT,
                 fps=STREAM_FPS,
                 bitrate=STREAM_BITRATE,
-                preset="ultrafast"
+                preset="ultrafast",
+                queue_size=STREAM_QUEUE_SIZE
             )
             stream_publisher.start()
             log("  Stream publisher started")
@@ -779,6 +941,16 @@ stats = {
     'invalid_plates': 0,
     'confirmed_vehicles': set(),
 }
+
+def queue_put_with_stop(target_queue, item, timeout=0.2) -> bool:
+    """在可停止语义下向队列写入，避免线程在退出阶段永久阻塞"""
+    while not stop_event.is_set():
+        try:
+            target_queue.put(item, block=True, timeout=timeout)
+            return True
+        except queue.Full:
+            continue
+    return False
 
 def video_reader_thread():
     global frame_idx, cap
@@ -903,10 +1075,11 @@ def vehicle_detection_thread():
         with lock:
             stats['total_detections'] += len(detections)
 
-        detect_queue.put(
-            (idx, original_frame, detections, detect_time),
-            block=True
-        )
+        if not queue_put_with_stop(
+            detect_queue,
+            (idx, original_frame, detections, detect_time)
+        ):
+            break
 
     log("[Vehicle Detector] Stopped")
 
@@ -993,14 +1166,7 @@ def plate_detection_thread():
             valid_count = 0
             invalid_count = 0
 
-            # 建立检测到跟踪的映射
-            det_to_track = {}
-            for track in tracked_objects:
-                # 找到对应的检测（通过bbox匹配）
-                for i, det in enumerate(detections):
-                    if track.bbox == det.bbox:
-                        det_to_track[i] = track.track_id
-                        break
+            det_to_track = vehicle_tracker.get_last_detection_mapping()
 
             if detections:
                 futures = []
@@ -1075,6 +1241,7 @@ def plate_detection_thread():
                                 frame=record.exit_frame,
                                 datatype=0
                             )
+                            record.exit_frame = None
 
             entry_exit_mgr.check_missing_vehicles(confirmed_plates_this_frame, frame.shape)
             entry_exit_mgr.check_exits(frame.shape)
@@ -1082,10 +1249,11 @@ def plate_detection_thread():
             plate_time = time.time() - start_time
 
             # === 传递所有跟踪对象到显示线程 ===
-            result_queue.put(
-                (idx, frame, plate_results, detect_time, plate_time, tracked_objects),
-                block=True
-            )
+            if not queue_put_with_stop(
+                result_queue,
+                (idx, frame, plate_results, detect_time, plate_time, tracked_objects)
+            ):
+                break
 
     log("[Plate Detector] Stopped")
 
@@ -1095,7 +1263,15 @@ display_queue = queue.Queue(maxsize=2)
 def display_thread():
     """独立显示线程 - 不阻塞主处理流水线"""
     log("[Display] Started")
-    window_name = "Vehicle Wash V3 (REALTIME + NO LOGIN)"
+    window_name = f"Vehicle Wash V3 ({DEVICE_ID})"
+
+    if NO_DISPLAY:
+        log("[Display] 本地显示已禁用（no_display=true）")
+        # 仍保持线程存活，以便接收 stop_event，但不创建窗口
+        while not stop_event.is_set():
+            time.sleep(0.1)
+        log("[Display] Stopped")
+        return
 
     while not stop_event.is_set():
         # 先检查stop_event，避免不必要的队列等待
@@ -1167,8 +1343,8 @@ def result_processing_thread():
                 break
             continue
 
-        # 队列积压检测 - 如果显示队列满，跳过绘制直接处理
-        skip_drawing = display_queue.full()
+        # 队列积压检测 - 如果显示队列满或禁用显示，跳过绘制直接处理
+        skip_drawing = display_queue.full() or NO_DISPLAY
         if skip_drawing:
             skipped_frames += 1
             result_frame = frame  # 不复制，直接使用原帧
@@ -1186,10 +1362,16 @@ def result_processing_thread():
             cv2.putText(result_frame, "WASH ZONE", (zx1 + 5, zy1 + 25),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
 
-            exit_x = int(w * entry_exit_mgr.exit_left_threshold)
-            cv2.line(result_frame, (exit_x, 0), (exit_x, h), (0, 0, 255), 2)
-            cv2.putText(result_frame, "EXIT", (5, h - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+            if entry_exit_mgr.exit_direction == 'bottom':
+                exit_y = int(h * (1 - entry_exit_mgr.exit_left_threshold))
+                cv2.line(result_frame, (0, exit_y), (w, exit_y), (0, 0, 255), 2)
+                cv2.putText(result_frame, "EXIT", (w - 80, h - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+            else:
+                exit_x = int(w * entry_exit_mgr.exit_left_threshold)
+                cv2.line(result_frame, (exit_x, 0), (exit_x, h), (0, 0, 255), 2)
+                cv2.putText(result_frame, "EXIT", (5, h - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
             # === 绘制所有跟踪的车辆检测框 ===
             for track in tracked_objects:
@@ -1394,10 +1576,21 @@ except KeyboardInterrupt:
 # 给所有线程一点时间处理停止信号
 time.sleep(0.5)
 
+for t in threads:
+    t.join(timeout=5.0)
+    if t.is_alive():
+        log(f"[Main] Thread {t.name} did not exit in time during cleanup")
+
 # 停止推流
 if stream_publisher is not None:
     log("[Main] Stopping stream publisher...")
     stream_publisher.stop()
+
+if db is not None:
+    db.close()
+
+if report_client is not None:
+    report_client.close()
 
 # 强制关闭所有OpenCV窗口
 cv2.destroyAllWindows()

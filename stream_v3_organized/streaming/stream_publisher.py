@@ -41,7 +41,9 @@ class FFmpegStreamPublisher:
                  fps: int = 25,
                  bitrate: str = "3000k",
                  preset: str = "ultrafast",
-                 gop_size: int = None):
+                 gop_size: int = None,
+                 queue_size: int = 30,
+                 drop_oldest_on_full: bool = True):
         """
         Args:
             output_url: 推流地址
@@ -62,11 +64,14 @@ class FFmpegStreamPublisher:
         self.bitrate = bitrate
         self.preset = preset
         self.gop_size = gop_size or (fps * 2)
+        self.queue_size = max(1, int(queue_size))
+        self.drop_oldest_on_full = drop_oldest_on_full
 
-        self.frame_queue = queue.Queue(maxsize=300)  # 增大队列到300帧（约12秒缓冲）
+        self.frame_queue = queue.Queue(maxsize=self.queue_size)
         self.stop_event = threading.Event()
         self.ffmpeg_process = None
         self.publish_thread = None
+        self.stderr_thread = None
         self.stats = {
             'frames_written': 0,
             'frames_dropped': 0,
@@ -132,6 +137,7 @@ class FFmpegStreamPublisher:
         if self.ffmpeg_process is not None:
             log("Publisher already started")
             return
+        self.stop_event.clear()
 
         command = self._build_command()
         log(f"Starting ffmpeg: {' '.join(command)}")
@@ -156,7 +162,13 @@ class FFmpegStreamPublisher:
             raise
 
         # 启动错误监控线程
-        threading.Thread(target=self._monitor_stderr, daemon=True).start()
+        self.stderr_thread = threading.Thread(
+            target=self._monitor_stderr,
+            args=(self.ffmpeg_process,),
+            daemon=True,
+            name="FFmpegStderrMonitor"
+        )
+        self.stderr_thread.start()
 
         self.stats['start_time'] = time.time()
         self.publish_thread = threading.Thread(target=self._publish_loop, daemon=True)
@@ -165,11 +177,11 @@ class FFmpegStreamPublisher:
         log(f"Stream publisher started: {self.output_url}")
         log(f"Output resolution: {self.width}x{self.height} @ {self.fps}fps, bitrate={self.bitrate}")
 
-    def _monitor_stderr(self):
+    def _monitor_stderr(self, process):
         """监控 ffmpeg stderr，只打印真正的错误"""
-        while not self.stop_event.is_set() and self.ffmpeg_process:
+        while not self.stop_event.is_set() and process:
             try:
-                line = self.ffmpeg_process.stderr.readline()
+                line = process.stderr.readline()
                 if not line:
                     break
                 line = line.decode('utf-8', errors='ignore').strip()
@@ -184,6 +196,46 @@ class FFmpegStreamPublisher:
             except Exception:
                 break
 
+    def _close_pipe(self, pipe):
+        try:
+            if pipe:
+                pipe.close()
+        except Exception:
+            pass
+
+    def _drain_frame_queue(self):
+        while not self.frame_queue.empty():
+            try:
+                self.frame_queue.get_nowait()
+            except queue.Empty:
+                break
+
+    def _cleanup_process(self, wait_timeout: float = 2.0):
+        process = self.ffmpeg_process
+        if not process:
+            return
+
+        self._close_pipe(process.stdin)
+        self._close_pipe(process.stdout)
+        self._close_pipe(process.stderr)
+
+        try:
+            process.wait(timeout=wait_timeout)
+        except subprocess.TimeoutExpired:
+            try:
+                process.terminate()
+                process.wait(timeout=2.0)
+            except Exception:
+                try:
+                    process.kill()
+                except Exception:
+                    pass
+
+        if self.stderr_thread and self.stderr_thread.is_alive():
+            self.stderr_thread.join(timeout=1.0)
+        self.stderr_thread = None
+        self.ffmpeg_process = None
+
     def _restart_ffmpeg(self):
         """重启 ffmpeg 进程（用于断线重连）"""
         log("Restarting ffmpeg...")
@@ -191,21 +243,13 @@ class FFmpegStreamPublisher:
         # 关闭旧进程
         if self.ffmpeg_process:
             try:
-                self.ffmpeg_process.stdin.close()
-            except:
-                pass
-            try:
                 self.ffmpeg_process.terminate()
-                self.ffmpeg_process.wait(timeout=2.0)
-            except:
-                self.ffmpeg_process.kill()
+            except Exception:
+                pass
+            self._cleanup_process(wait_timeout=2.0)
         
         # 清空队列（避免积压太久）
-        while not self.frame_queue.empty():
-            try:
-                self.frame_queue.get_nowait()
-            except queue.Empty:
-                break
+        self._drain_frame_queue()
         
         # 重新启动
         command = self._build_command()
@@ -223,7 +267,13 @@ class FFmpegStreamPublisher:
                 startupinfo=startupinfo,
                 bufsize=10**8,
             )
-            threading.Thread(target=self._monitor_stderr, daemon=True).start()
+            self.stderr_thread = threading.Thread(
+                target=self._monitor_stderr,
+                args=(self.ffmpeg_process,),
+                daemon=True,
+                name="FFmpegStderrMonitor"
+            )
+            self.stderr_thread.start()
             log("FFmpeg restarted successfully")
             return True
         except Exception as e:
@@ -300,6 +350,16 @@ class FFmpegStreamPublisher:
             self.frame_queue.put(frame, block=False)
         except queue.Full:
             self.stats['frames_dropped'] += 1
+            if not self.drop_oldest_on_full:
+                return
+            try:
+                self.frame_queue.get_nowait()
+            except queue.Empty:
+                return
+            try:
+                self.frame_queue.put_nowait(frame)
+            except queue.Full:
+                pass
 
     def get_stats(self) -> dict:
         """获取推流统计"""
@@ -318,25 +378,11 @@ class FFmpegStreamPublisher:
 
         if self.publish_thread:
             self.publish_thread.join(timeout=3.0)
+            self.publish_thread = None
 
         if self.ffmpeg_process:
-            try:
-                self.ffmpeg_process.stdin.close()
-            except:
-                pass
-
-            # 等待 ffmpeg 优雅退出
-            try:
-                self.ffmpeg_process.wait(timeout=5.0)
-            except subprocess.TimeoutExpired:
-                log("Force killing ffmpeg process")
-                self.ffmpeg_process.terminate()
-                try:
-                    self.ffmpeg_process.wait(timeout=2.0)
-                except:
-                    self.ffmpeg_process.kill()
-
-        self.ffmpeg_process = None
+            self._cleanup_process(wait_timeout=5.0)
+        self._drain_frame_queue()
         log("Stream publisher stopped")
 
 

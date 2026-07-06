@@ -63,7 +63,7 @@ class VehicleTracker:
     核心功能：
     1. 为每个检测到的车辆分配唯一跟踪ID
     2. 基于IOU进行帧间匹配
-    3. 检测车辆出场（从左侧离开画面）
+    3. 检测车辆出场（从左侧或下方离开画面）
     4. 车牌关联（将识别到的车牌绑定到跟踪ID）
     """
     
@@ -71,24 +71,28 @@ class VehicleTracker:
                  iou_threshold: float = 0.3,
                  max_miss_frames: int = 5,
                  exit_left_threshold: float = 0.05,
-                 exit_wait_time: float = 3.0):
+                 exit_wait_time: float = 3.0,
+                 exit_direction: str = 'left'):
         """
         Args:
             iou_threshold: IOU匹配阈值
             max_miss_frames: 最大允许连续未检测到的帧数
-            exit_left_threshold: 出场左侧阈值（画面宽度的比例）
+            exit_left_threshold: 出场阈值（画面宽度/高度的比例，根据 exit_direction）
             exit_wait_time: 出场确认等待时间（秒）
+            exit_direction: 出场方向 ('left' 或 'bottom')
         """
         self.iou_threshold = iou_threshold
         self.max_miss_frames = max_miss_frames
         self.exit_left_threshold = exit_left_threshold
         self.exit_wait_time = exit_wait_time
+        self.exit_direction = exit_direction.lower() if exit_direction else 'left'
         
         # 活跃跟踪
         self.active_tracks: Dict[int, TrackedObject] = {}
         
         # 已出场的跟踪（保留一段时间用于二次进场检测）
         self.exited_tracks: Dict[int, TrackedObject] = {}
+        self.last_detection_map: Dict[int, int] = {}
         
         # ID计数器
         self.next_track_id = 1
@@ -119,6 +123,7 @@ class VehicleTracker:
         # 1. 计算所有活跃跟踪与当前检测的IOU
         matched_tracks = set()
         matched_detections = set()
+        self.last_detection_map = {}
         
         if detections and self.active_tracks:
             # 构建IOU矩阵
@@ -152,6 +157,7 @@ class VehicleTracker:
                 
                 matched_tracks.add(track_id)
                 matched_detections.add(det_idx)
+                self.last_detection_map[det_idx] = track_id
                 
                 # 将已匹配的行和列置为-1
                 iou_matrix[track_idx, :] = -1
@@ -181,11 +187,12 @@ class VehicleTracker:
                                       (bbox[1] + bbox[3]) / 2, timestamp)]
                 )
                 self.active_tracks[self.next_track_id] = track
+                self.last_detection_map[i] = self.next_track_id
                 self.next_track_id += 1
                 self.stats['total_tracks'] += 1
         
-        # 4. 检查出场（从左侧离开）
-        self._check_exits(frame_width, timestamp)
+        # 4. 检查出场（从左侧或下方离开）
+        self._check_exits(frame_width, timestamp, frame_height)
         
         # 5. 清理长时间未检测到的跟踪
         self._cleanup_tracks()
@@ -220,34 +227,59 @@ class VehicleTracker:
                 return track
         return None
     
-    def _check_exits(self, frame_width: int, timestamp: float):
-        """检查是否有车辆从左侧出场"""
+    def _check_exits(self, frame_width: int, timestamp: float, frame_height: int = None):
+        """检查是否有车辆从指定方向出场"""
         tracks_to_exit = []
+        if frame_height is None:
+            frame_height = frame_width  # 兼容旧调用
         
         for track_id, track in self.active_tracks.items():
             if track.exit_detected:
                 continue
             
-            # 检查是否在画面左侧
             x1, y1, x2, y2 = track.bbox
-            left_threshold = frame_width * self.exit_left_threshold
             
-            # 条件1：检测框完全在左侧阈值内
-            is_fully_left = x2 < left_threshold
+            if self.exit_direction == 'bottom':
+                # 从画面下方出场
+                bottom_threshold = frame_height * (1 - self.exit_left_threshold)
+                
+                # 条件1：检测框完全在下方阈值内
+                is_fully_bottom = y1 > bottom_threshold
+                
+                # 条件2：车辆大部分在下方
+                is_mostly_bottom = y2 > bottom_threshold and y1 > bottom_threshold - frame_height * self.exit_left_threshold * 2
+                
+                # 条件3：或者车辆正在向下移动且接近边缘
+                is_moving_bottom = False
+                if len(track.position_history) >= 3:
+                    recent = track.position_history[-3:]
+                    y_positions = [p[1] for p in recent]
+                    if y_positions[-1] > y_positions[0]:  # 向下移动
+                        is_moving_bottom = True
+                
+                should_exit = is_fully_bottom or is_mostly_bottom or (is_moving_bottom and y2 > bottom_threshold - frame_height * self.exit_left_threshold)
+            else:
+                # 默认：从画面左侧出场
+                left_threshold = frame_width * self.exit_left_threshold
+                
+                # 条件1：检测框完全在左侧阈值内
+                is_fully_left = x2 < left_threshold
+                
+                # 条件2：车辆大部分在左侧（左边界已过阈值线）
+                is_mostly_left = x1 < left_threshold and x2 < left_threshold * 3
+                
+                # 条件3：或者车辆正在向左移动且接近边缘
+                is_moving_left = False
+                if len(track.position_history) >= 3:
+                    recent = track.position_history[-3:]
+                    # 计算x方向移动趋势
+                    x_positions = [p[0] for p in recent]
+                    if x_positions[-1] < x_positions[0]:  # 向左移动
+                        is_moving_left = True
+                
+                should_exit = is_fully_left or is_mostly_left or (is_moving_left and x1 < left_threshold * 2)
             
-            # 条件2：车辆大部分在左侧（左边界已过阈值线）
-            is_mostly_left = x1 < left_threshold and x2 < left_threshold * 3
-            
-            # 条件3：或者车辆正在向左移动且接近边缘
-            is_moving_left = False
-            if len(track.position_history) >= 3:
-                recent = track.position_history[-3:]
-                # 计算x方向移动趋势
-                x_positions = [p[0] for p in recent]
-                if x_positions[-1] < x_positions[0]:  # 向左移动
-                    is_moving_left = True
-            
-            if is_fully_left or is_mostly_left or (is_moving_left and x1 < left_threshold * 2):
+            if should_exit:
                 track.exit_detected = True
                 track.exit_time = timestamp
                 tracks_to_exit.append(track_id)
@@ -317,6 +349,10 @@ class VehicleTracker:
     def get_exited_tracks(self) -> List[TrackedObject]:
         """获取已出场的跟踪"""
         return list(self.exited_tracks.values())
+
+    def get_last_detection_mapping(self) -> Dict[int, int]:
+        """获取最近一次 update 的 detection_index -> track_id 映射"""
+        return dict(self.last_detection_map)
     
     def get_statistics(self) -> Dict:
         """获取统计信息"""

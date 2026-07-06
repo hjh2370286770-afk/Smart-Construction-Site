@@ -1,0 +1,42 @@
+# 项目配置：JUNHE_106_01（既有工地）
+project_name: "JUNHE_106"
+device_id: "JUNHE_106_01"
+
+# 视频源（萤石云 RTMP 拉流）
+video_path: "rtmp://rtmp05open.ys7.com:1935/v3/openlive/BK1948130_2_1?expire=1809950641&id=975488750482890752&t=69761f54257288b0df5f7db26a58a8996a6501f7cf1a8475ee42bd6f3ef1f42c&ev=101"
+
+# 上报平台
+report_url: "http://47.94.205.19:8080/api/addRecord"
+oss_upload_url: "http://47.94.205.19:9981/api/upload"
+enable_report: true
+report_pid: 1
+
+# 推流输出
+enable_streaming: true
+stream_output_url: "rtmp://121.199.7.83:1935/live/vehicle_wash"
+stream_width: 1280
+stream_height: 720
+stream_fps: 25
+stream_bitrate: "1500k"
+stream_queue_size: 20
+
+# 进出场与清洗
+exit_direction: "left"        # 车辆从画面左侧离场
+exit_edge_threshold: 0.05
+exit_wait_time: 60
+wash_stop_time: 180
+wash_zone:
+  x1: 0.1
+  y1: 0.3
+  x2: 0.7
+  y2: 0.8
+plate_merge_threshold: 0.60
+
+# 数据库与日志（每个项目独立，避免多实例冲突）
+db_enabled: true
+db_path: "vehicle_wash_JUNHE_106_01.db"
+db_table_name: "vehicle_wash_records"
+log_file: "full_video_test_v3_report_JUNHE_106_01.log"
+
+# 显示窗口（多实例同时运行时建议对非主实例关闭）
+no_display: false

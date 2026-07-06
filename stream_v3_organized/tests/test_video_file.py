@@ -253,18 +253,16 @@ class EntryExitManager:
     def check_missing_vehicles(self, confirmed_plates: List[str], frame_shape: Tuple):
         current_time = datetime.now()
         frame_height, frame_width = frame_shape[:2]
+        confirmed_roots = {
+            self.plate_variants.get(cp, cp)
+            for cp in confirmed_plates
+        }
 
         for plate, record in self.records.items():
             if record.exit_time is not None:
                 continue
 
-            # 检查该记录的主车牌或其变体是否在当前帧被确认
-            is_confirmed_this_frame = False
-            for cp in confirmed_plates:
-                if cp == plate or self.plate_variants.get(cp) == plate:
-                    is_confirmed_this_frame = True
-                    break
-            if is_confirmed_this_frame:
+            if plate in confirmed_roots:
                 continue
 
             if record.last_bbox and self._is_near_left_edge(record.last_bbox, frame_width):
@@ -304,7 +302,7 @@ class EntryExitManager:
             'total_entries': self.total_entries,
             'total_exits': self.total_exits,
             'washed_count': self.washed_count,
-            'active_vehicles': len(self.get_active_records()),
+            'active_vehicles': sum(1 for r in self.records.values() if r.exit_time is None),
             'pending_exit': len(self.left_disappear_time),
             'wash_rate': self.washed_count / self.total_exits if self.total_exits > 0 else 0,
         }
@@ -453,6 +451,15 @@ stats = {
     'confirmed_vehicles': set(),
 }
 
+def queue_put_with_stop(target_queue, item, timeout=0.2) -> bool:
+    while not stop_event.is_set():
+        try:
+            target_queue.put(item, block=True, timeout=timeout)
+            return True
+        except queue.Full:
+            continue
+    return False
+
 def video_reader_thread():
     global frame_idx
     log("[Video Reader] Started (FILE MODE)")
@@ -529,10 +536,11 @@ def vehicle_detection_thread():
         with lock:
             stats['total_detections'] += len(detections)
 
-        detect_queue.put(
-            (idx, original_frame, detections, detect_time),
-            block=True
-        )
+        if not queue_put_with_stop(
+            detect_queue,
+            (idx, original_frame, detections, detect_time)
+        ):
+            break
 
     log("[Vehicle Detector] Stopped")
 
@@ -624,14 +632,7 @@ def plate_detection_thread():
             valid_count = 0
             invalid_count = 0
 
-            # 建立检测到跟踪的映射
-            det_to_track = {}
-            for track in tracked_objects:
-                # 找到对应的检测（通过bbox匹配）
-                for i, det in enumerate(detections):
-                    if track.bbox == det.bbox:
-                        det_to_track[i] = track.track_id
-                        break
+            det_to_track = vehicle_tracker.get_last_detection_mapping()
 
             if detections:
                 futures = []
@@ -703,10 +704,11 @@ def plate_detection_thread():
             plate_time = time.time() - start_time
 
             # === 传递所有跟踪对象到显示线程 ===
-            result_queue.put(
-                (idx, frame, plate_results, detect_time, plate_time, tracked_objects),
-                block=True
-            )
+            if not queue_put_with_stop(
+                result_queue,
+                (idx, frame, plate_results, detect_time, plate_time, tracked_objects)
+            ):
+                break
 
     log("[Plate Detector] Stopped")
 
@@ -991,6 +993,11 @@ except KeyboardInterrupt:
 # 给所有线程一点时间处理停止信号
 time.sleep(0.5)
 
+for t in threads:
+    t.join(timeout=5.0)
+    if t.is_alive():
+        log(f"[Main] Thread {t.name} did not exit in time during cleanup")
+
 # 强制关闭所有OpenCV窗口
 cv2.destroyAllWindows()
 for i in range(10):
@@ -1061,3 +1068,8 @@ else:
 log(f"\nEntry/Exit Statistics:")
 log(f"  Total entries: {mgr_stats['total_entries']}")
 log(f"  Total exits: {mgr_stats['total_exits']}")
+log(f"  Washed: {mgr_stats['washed_count']}")
+log(f"  Wash rate: {mgr_stats['wash_rate']:.1%}")
+log("=" * 70)
+cap.release()
+log_file.close()
