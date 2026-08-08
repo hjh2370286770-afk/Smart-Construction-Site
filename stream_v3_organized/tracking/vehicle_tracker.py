@@ -31,7 +31,10 @@ class TrackedObject:
     # 出场状态
     exit_detected: bool = False
     exit_time: Optional[float] = None
-    
+
+    # 创建时间（用于最短在场时间校验）
+    created_at: float = field(default_factory=time.time)
+
     def get_center(self) -> Tuple[float, float]:
         x1, y1, x2, y2 = self.bbox
         return ((x1 + x2) / 2, (y1 + y2) / 2)
@@ -67,25 +70,33 @@ class VehicleTracker:
     4. 车牌关联（将识别到的车牌绑定到跟踪ID）
     """
     
-    def __init__(self, 
+    def __init__(self,
                  iou_threshold: float = 0.3,
                  max_miss_frames: int = 5,
                  exit_left_threshold: float = 0.05,
                  exit_wait_time: float = 3.0,
-                 exit_direction: str = 'left'):
+                 exit_direction: str = 'left',
+                 exit_leading_edge_threshold: float = 0.80,
+                 min_dwell_time: float = 5.0):
         """
         Args:
             iou_threshold: IOU匹配阈值
             max_miss_frames: 最大允许连续未检测到的帧数
-            exit_left_threshold: 出场阈值（画面宽度/高度的比例，根据 exit_direction）
+            exit_left_threshold: 出场阈值（兼容旧参数）
             exit_wait_time: 出场确认等待时间（秒）
-            exit_direction: 出场方向 ('left' 或 'bottom')
+            exit_direction: 出场方向 ('left' / 'right' / 'bottom')
+            exit_leading_edge_threshold: 检测框前缘越线阈值（0~1）
+            min_dwell_time: 车辆创建后最短在场时间（秒），防止刚进即出
         """
         self.iou_threshold = iou_threshold
         self.max_miss_frames = max_miss_frames
         self.exit_left_threshold = exit_left_threshold
         self.exit_wait_time = exit_wait_time
+        self.exit_leading_edge_threshold = exit_leading_edge_threshold
+        self.min_dwell_time = min_dwell_time
         self.exit_direction = exit_direction.lower() if exit_direction else 'left'
+        if self.exit_direction not in ('left', 'right', 'bottom'):
+            self.exit_direction = 'left'
         
         # 活跃跟踪
         self.active_tracks: Dict[int, TrackedObject] = {}
@@ -228,62 +239,47 @@ class VehicleTracker:
         return None
     
     def _check_exits(self, frame_width: int, timestamp: float, frame_height: int = None):
-        """检查是否有车辆从指定方向出场"""
+        """检查是否有车辆从指定方向出场（前缘越线 + 最短在场时间 + 持续等待）"""
         tracks_to_exit = []
         if frame_height is None:
             frame_height = frame_width  # 兼容旧调用
-        
+
+        t = self.exit_leading_edge_threshold
         for track_id, track in self.active_tracks.items():
             if track.exit_detected:
                 continue
-            
+
+            # 最短在场时间校验
+            if (timestamp - track.created_at) < self.min_dwell_time:
+                continue
+
             x1, y1, x2, y2 = track.bbox
-            
+
+            # 前缘越线判定
             if self.exit_direction == 'bottom':
-                # 从画面下方出场
-                bottom_threshold = frame_height * (1 - self.exit_left_threshold)
-                
-                # 条件1：检测框完全在下方阈值内
-                is_fully_bottom = y1 > bottom_threshold
-                
-                # 条件2：车辆大部分在下方
-                is_mostly_bottom = y2 > bottom_threshold and y1 > bottom_threshold - frame_height * self.exit_left_threshold * 2
-                
-                # 条件3：或者车辆正在向下移动且接近边缘
-                is_moving_bottom = False
-                if len(track.position_history) >= 3:
-                    recent = track.position_history[-3:]
-                    y_positions = [p[1] for p in recent]
-                    if y_positions[-1] > y_positions[0]:  # 向下移动
-                        is_moving_bottom = True
-                
-                should_exit = is_fully_bottom or is_mostly_bottom or (is_moving_bottom and y2 > bottom_threshold - frame_height * self.exit_left_threshold)
+                # 向下离开：前缘是 bbox 顶部 y1
+                is_near_exit = y1 > frame_height * t
+            elif self.exit_direction == 'right':
+                # 向右离开：前缘是 bbox 右侧 x2
+                is_near_exit = x2 > frame_width * t
             else:
-                # 默认：从画面左侧出场
-                left_threshold = frame_width * self.exit_left_threshold
-                
-                # 条件1：检测框完全在左侧阈值内
-                is_fully_left = x2 < left_threshold
-                
-                # 条件2：车辆大部分在左侧（左边界已过阈值线）
-                is_mostly_left = x1 < left_threshold and x2 < left_threshold * 3
-                
-                # 条件3：或者车辆正在向左移动且接近边缘
-                is_moving_left = False
-                if len(track.position_history) >= 3:
-                    recent = track.position_history[-3:]
-                    # 计算x方向移动趋势
-                    x_positions = [p[0] for p in recent]
-                    if x_positions[-1] < x_positions[0]:  # 向左移动
-                        is_moving_left = True
-                
-                should_exit = is_fully_left or is_mostly_left or (is_moving_left and x1 < left_threshold * 2)
-            
-            if should_exit:
+                # 向左离开：前缘是 bbox 左侧 x1
+                is_near_exit = x1 < frame_width * (1 - t)
+
+            if not is_near_exit:
+                track.pending_exit_since = None
+                continue
+
+            # 持续满足条件超过 exit_wait_time 才出场
+            pending_since = getattr(track, 'pending_exit_since', None)
+            if pending_since is None:
+                track.pending_exit_since = timestamp
+                continue
+            if (timestamp - pending_since) >= self.exit_wait_time:
                 track.exit_detected = True
                 track.exit_time = timestamp
                 tracks_to_exit.append(track_id)
-        
+
         # 将标记出场的跟踪移到exited_tracks
         for track_id in tracks_to_exit:
             track = self.active_tracks.pop(track_id)

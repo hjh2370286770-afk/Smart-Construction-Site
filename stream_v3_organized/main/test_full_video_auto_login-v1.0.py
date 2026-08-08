@@ -98,8 +98,12 @@ parser.add_argument('--stream-url', type=str, default=None,
 parser.add_argument('--report-pid', type=int, default=None,
                     help='上报平台 pid')
 parser.add_argument('--exit-direction', type=str, default=None,
-                    choices=['left', 'bottom'],
-                    help='车辆出场方向: left 或 bottom')
+                    choices=['left', 'right', 'bottom'],
+                    help='车辆出场方向: left、right 或 bottom')
+parser.add_argument('--exit-leading-edge-threshold', type=float, default=None,
+                    help='检测框前缘越线阈值（0~1），默认 0.80')
+parser.add_argument('--min-dwell-time', type=int, default=None,
+                    help='车辆进场后最短在场时间（秒），默认 5')
 parser.add_argument('--no-display', action='store_true',
                     help='不显示 OpenCV 窗口（多实例同时运行时建议开启）')
 args = parser.parse_args()
@@ -132,6 +136,16 @@ ENABLE_REPORT = cfg('enable_report', default=True)  # 是否启用上报
 OSS_UPLOAD_URL = cfg('oss_upload_url', default='http://47.94.205.19:9981/api/upload')
 REPORT_PID = cfg('report_pid', default=1)  # 上报平台 pid
 
+# ============ 第二平台上报配置（上海智能建筑） ============
+ENABLE_REPORT_2 = cfg('enable_report_2', default=True)  # 是否启用第二平台上报
+REPORT_2_LOGIN_URL = cfg('report_2_login_url', default='https://api.shznjz.cn/api/Login')
+REPORT_2_API_URL = cfg('report_2_api_url', default='https://api.shznjz.cn/api/AddVehicleManage')
+REPORT_2_LOGIN = cfg('report_2_login', default='shebeituisong')
+REPORT_2_PWD = cfg('report_2_pwd', default='rh@123')
+REPORT_2_DEVICE_ID = cfg('report_2_device_id', default=DEVICE_ID)  # 默认与 DEVICE_ID 相同
+REPORT_2_INVERT_ISWASH = cfg('report_2_invert_iswash', default=True)  # 上海平台 iswash 与自有平台相反
+# ==========================================================
+
 # ============ 推流配置 ============
 ENABLE_STREAMING = cfg('enable_streaming', default=True)  # 是否启用推流
 STREAM_OUTPUT_URL = cfg('stream_output_url', default='rtmp://121.199.7.83:1935/live/vehicle_wash')  # 推流地址
@@ -154,9 +168,11 @@ STREAM_RECONNECT_RESET_INTERVAL = cfg('stream_reconnect_reset_interval', default
 # ======================================
 
 # ============ 进出场与清洗配置 ============
-EXIT_DIRECTION = cfg('exit_direction', default='left')  # 车辆出场方向：'left' 或 'bottom'
-EXIT_EDGE_THRESHOLD = cfg('exit_edge_threshold', default=0.05)  # 出场边缘阈值
-EXIT_WAIT_TIME = cfg('exit_wait_time', default=60)  # 出场等待时间（秒）
+EXIT_DIRECTION = cfg('exit_direction', default='left')  # 车辆出场方向：'left' / 'right' / 'bottom'
+EXIT_EDGE_THRESHOLD = cfg('exit_edge_threshold', default=0.05)  # 出场边缘阈值（兼容旧逻辑）
+EXIT_LEADING_EDGE_THRESHOLD = cfg('exit_leading_edge_threshold', default=0.80)  # 检测框前缘越线阈值（0~1）
+EXIT_WAIT_TIME = cfg('exit_wait_time', default=3)  # 前缘持续越线多久才判定出场（秒），新逻辑建议 2~5 秒
+MIN_DWELL_TIME = cfg('min_dwell_time', default=5)  # 车辆进场后最短在场时间（秒），防止同时进出场
 WASH_STOP_TIME = cfg('wash_stop_time', default=30)  # 清洗停止判定时间（秒）
 WASH_ZONE = cfg('wash_zone', default={'x1': 0.1, 'y1': 0.3, 'x2': 0.7, 'y2': 0.8})
 PLATE_MERGE_THRESHOLD = cfg('plate_merge_threshold', default=0.60)
@@ -381,6 +397,209 @@ class ReportClient:
         self._session.close()
 
 
+class ShznjzReportClient:
+    """
+    上海智能建筑平台上报客户端
+
+    流程：
+    1. 每次上报前调用 /api/Login 获取 token
+    2. 将抓拍帧编码为 base64 JPEG
+    3. 携带 token Header，POST /api/AddVehicleManage
+    """
+
+    def __init__(self,
+                 device_id: str,
+                 login_url: str,
+                 api_url: str,
+                 login: str,
+                 pwd: str,
+                 enable: bool = True,
+                 invert_iswash: bool = False):
+        self.device_id = device_id
+        self.login_url = login_url
+        self.api_url = api_url
+        self.login = login
+        self.pwd = pwd
+        self.enable = enable
+        self.invert_iswash = invert_iswash
+        self.success_count = 0
+        self.fail_count = 0
+        self._lock = threading.Lock()
+        self._closed = False
+        self._session = requests.Session()
+        self._session.headers.update({
+            'Content-Type': 'application/json',
+            'User-Agent': 'VehicleWashDetector/1.0'
+        })
+        self._executor = ThreadPoolExecutor(
+            max_workers=REPORT_MAX_WORKERS,
+            thread_name_prefix="shznjz-report-client"
+        )
+
+    def _encode_frame_to_base64(self, frame: np.ndarray, quality: int = 65) -> Optional[str]:
+        """将 OpenCV 帧编码为 base64 字符串"""
+        try:
+            encode_param = [cv2.IMWRITE_JPEG_QUALITY, quality]
+            ret, buffer = cv2.imencode('.jpg', frame, encode_param)
+            if not ret:
+                log(f"[ShznjzReport] 图片编码失败")
+                return None
+            return base64.b64encode(buffer.tobytes()).decode('utf-8')
+        except Exception as e:
+            log(f"[ShznjzReport] base64 编码异常: {e}")
+            return None
+
+    def _login(self) -> Optional[str]:
+        """登录并返回 token"""
+        try:
+            resp = self._session.post(
+                self.login_url,
+                json={"Login": self.login, "pwd": self.pwd},
+                timeout=10
+            )
+            try:
+                if resp.status_code == 200:
+                    result = resp.json()
+                    if result.get("Code") == 1:
+                        data = result.get("Data", {})
+                        token = data.get("token")
+                        if token:
+                            log(f"[ShznjzReport] 登录成功，获取 token")
+                            return token
+                        else:
+                            log(f"[ShznjzReport] 登录响应中无 token: {result}")
+                    else:
+                        log(f"[ShznjzReport] 登录失败: {result.get('Message')}")
+                else:
+                    log(f"[ShznjzReport] 登录 HTTP 错误: {resp.status_code}")
+            finally:
+                resp.close()
+        except requests.exceptions.ConnectionError:
+            log(f"[ShznjzReport] 登录连接失败")
+        except requests.exceptions.Timeout:
+            log(f"[ShznjzReport] 登录超时")
+        except Exception as e:
+            log(f"[ShznjzReport] 登录异常: {e}")
+        return None
+
+    def _mark_success(self):
+        with self._lock:
+            self.success_count += 1
+
+    def _mark_fail(self):
+        with self._lock:
+            self.fail_count += 1
+
+    def report(self, license_plate: str, inouttype: int, iswash: int,
+               frame: np.ndarray, datatype: int = 0) -> bool:
+        """提交上报任务到线程池"""
+        if not self.enable:
+            return False
+        if frame is None:
+            log(f"[ShznjzReport] 无抓拍帧，跳过: {license_plate}")
+            self._mark_fail()
+            return False
+        with self._lock:
+            if self._closed:
+                self.fail_count += 1
+                return False
+        try:
+            self._executor.submit(
+                self._report_worker,
+                license_plate,
+                inouttype,
+                iswash,
+                frame,
+                datatype
+            )
+            return True
+        except Exception as e:
+            log(f"[ShznjzReport] 提交任务失败 {license_plate}: {e}")
+            self._mark_fail()
+            return False
+
+    def _report_worker(self, license_plate: str, inouttype: int, iswash: int,
+                       frame: np.ndarray, datatype: int = 0):
+        # 1. 先登录获取 token
+        token = self._login()
+        if not token:
+            log(f"[ShznjzReport] 无法获取 token，跳过上报: {license_plate}")
+            self._mark_fail()
+            return
+
+        # 2. 图片转 base64
+        photo_base64 = self._encode_frame_to_base64(frame)
+        if not photo_base64:
+            self._mark_fail()
+            return
+
+        # 3. 上报（根据配置反转 iswash 含义）
+        report_iswash = 1 - iswash if self.invert_iswash else iswash
+        payload = [
+            {
+                "device_id": self.device_id,
+                "licenseplate": license_plate,
+                "inouttype": inouttype,
+                "iswash": report_iswash,
+                "photo": photo_base64,
+                "datatype": datatype
+            }
+        ]
+
+        headers = {
+            'Content-Type': 'application/json',
+            'token': token
+        }
+
+        try:
+            resp = self._session.post(
+                self.api_url,
+                json=payload,
+                headers=headers,
+                timeout=15
+            )
+            try:
+                if resp.status_code == 200:
+                    result = resp.json()
+                    if result.get("Code") == 1:
+                        self._mark_success()
+                        inout_str = "进场" if inouttype == 0 else "出场"
+                        log(f"[ShznjzReport] ✓ 上报成功: {license_plate} {inout_str}")
+                    else:
+                        self._mark_fail()
+                        log(f"[ShznjzReport] ✗ 上报失败: {license_plate}, {result}")
+                else:
+                    self._mark_fail()
+                    log(f"[ShznjzReport] ✗ 上报 HTTP 错误: {license_plate}, {resp.status_code}")
+            finally:
+                resp.close()
+        except requests.exceptions.ConnectionError:
+            self._mark_fail()
+            log(f"[ShznjzReport] ✗ 上报连接失败: {license_plate}")
+        except requests.exceptions.Timeout:
+            self._mark_fail()
+            log(f"[ShznjzReport] ✗ 上报超时: {license_plate}")
+        except Exception as e:
+            self._mark_fail()
+            log(f"[ShznjzReport] ✗ 上报异常: {license_plate}, {e}")
+
+    def get_stats(self) -> dict:
+        with self._lock:
+            return {
+                'success': self.success_count,
+                'fail': self.fail_count,
+                'total': self.success_count + self.fail_count
+            }
+
+    def close(self):
+        with self._lock:
+            if self._closed:
+                return
+            self._closed = True
+        self._executor.shutdown(wait=True)
+        self._session.close()
+
+
 # ============================================================
 # 进出场 + 清洗判定（集成上报）
 # ============================================================
@@ -409,12 +628,18 @@ class EntryExitManager:
     def __init__(self, wash_stop_time=180, exit_wait_time=60,
                  exit_left_threshold=0.05, wash_zone=None,
                  plate_merge_threshold=0.60,
-                 report_client: Optional[ReportClient] = None,
-                 exit_direction='left'):
+                 report_client=None,
+                 exit_direction='left',
+                 exit_leading_edge_threshold=0.80,
+                 min_dwell_time=5):
         self.wash_stop_time = wash_stop_time
         self.exit_wait_time = exit_wait_time
         self.exit_left_threshold = exit_left_threshold
+        self.exit_leading_edge_threshold = exit_leading_edge_threshold
+        self.min_dwell_time = min_dwell_time
         self.exit_direction = exit_direction.lower() if exit_direction else 'left'
+        if self.exit_direction not in ('left', 'right', 'bottom'):
+            self.exit_direction = 'left'
         self.wash_zone = wash_zone or {'x1': 0.1, 'y1': 0.3, 'x2': 0.7, 'y2': 0.8}
         self.plate_merge_threshold = plate_merge_threshold
 
@@ -430,7 +655,13 @@ class EntryExitManager:
         self.db = None
         # 车牌变体映射: 变体 -> 主车牌
         self.plate_variants: Dict[str, str] = {}
-        self.report_client = report_client
+        # 支持单个客户端或客户端列表
+        if report_client is None:
+            self.report_clients = []
+        elif isinstance(report_client, (list, tuple)):
+            self.report_clients = [c for c in report_client if c is not None]
+        else:
+            self.report_clients = [report_client]
 
         # 当前帧缓存（用于抓拍）
         self.current_frame: Optional[np.ndarray] = None
@@ -567,7 +798,12 @@ class EntryExitManager:
             if self._is_near_exit_edge(bbox, frame_width, frame_height):
                 if similar_plate not in self.left_disappear_time:
                     self.left_disappear_time[similar_plate] = current_time
-                    edge_name = "下方" if self.exit_direction == 'bottom' else "左侧"
+                    if self.exit_direction == 'bottom':
+                        edge_name = "下方"
+                    elif self.exit_direction == 'right':
+                        edge_name = "右侧"
+                    else:
+                        edge_name = "左侧"
                     log(f"车辆到达画面{edge_name}: 车牌={similar_plate}")
             else:
                 if similar_plate in self.left_disappear_time:
@@ -612,14 +848,15 @@ class EntryExitManager:
                 log(f"数据库保存失败: {e}")
 
         # === 上报进场 ===
-        if self.report_client and record.entry_frame is not None:
-            self.report_client.report(
-                license_plate=plate,
-                inouttype=0,      # 进场
-                iswash=0,         # 刚进场，未洗
-                frame=record.entry_frame,
-                datatype=0
-            )
+        if record.entry_frame is not None:
+            for client in self.report_clients:
+                client.report(
+                    license_plate=plate,
+                    inouttype=0,      # 进场
+                    iswash=0,         # 刚进场，未洗
+                    frame=record.entry_frame,
+                    datatype=0
+                )
             record.entry_frame = None
 
         return record
@@ -633,6 +870,10 @@ class EntryExitManager:
             if wait_elapsed >= self.exit_wait_time:
                 record = self.records.get(plate)
                 if record and record.exit_time is None:
+                    dwell_time = (current_time - record.entry_time).total_seconds()
+                    if dwell_time < self.min_dwell_time:
+                        # 最短在场时间未满足，继续等待
+                        continue
                     record.exit_time = current_time
                     record.dwell_time = (record.exit_time - record.entry_time).total_seconds()
                     record.exit_frame = self.current_frame.copy() if self.current_frame is not None else None
@@ -654,14 +895,15 @@ class EntryExitManager:
                         f"清洗={'是' if record.is_washed else '否'}")
 
                     # === 上报出场 ===
-                    if self.report_client and record.exit_frame is not None:
-                        self.report_client.report(
-                            license_plate=plate,
-                            inouttype=1,      # 出场
-                            iswash=1 if record.is_washed else 0,
-                            frame=record.exit_frame,
-                            datatype=0
-                        )
+                    if record.exit_frame is not None:
+                        for client in self.report_clients:
+                            client.report(
+                                license_plate=plate,
+                                inouttype=1,      # 出场
+                                iswash=1 if record.is_washed else 0,
+                                frame=record.exit_frame,
+                                datatype=0
+                            )
                         record.exit_frame = None
 
                     del self.left_disappear_time[plate]
@@ -686,7 +928,12 @@ class EntryExitManager:
             if record.last_bbox and self._is_near_exit_edge(record.last_bbox, frame_width, frame_height):
                 if plate not in self.left_disappear_time:
                     self.left_disappear_time[plate] = current_time
-                    edge_name = "下方" if self.exit_direction == 'bottom' else "左侧"
+                    if self.exit_direction == 'bottom':
+                        edge_name = "下方"
+                    elif self.exit_direction == 'right':
+                        edge_name = "右侧"
+                    else:
+                        edge_name = "左侧"
                     log(f"车辆从{edge_name}消失: 车牌={plate}")
 
     def _is_in_wash_zone(self, bbox, frame_width, frame_height):
@@ -707,11 +954,20 @@ class EntryExitManager:
         return (max(xs) - min(xs)) < 30 and (max(ys) - min(ys)) < 30
 
     def _is_near_exit_edge(self, bbox, frame_width, frame_height):
+        """
+        前缘越线判定：用检测框朝向出口方向的那条边作为前缘。
+        - bottom：车辆向下离开，前缘是 bbox 顶部 y1，y1 > threshold*h 即出场
+        - right：车辆向右离开，前缘是 bbox 右侧 x2，x2 > threshold*w 即出场
+        - left：车辆向左离开，前缘是 bbox 左侧 x1，x1 < (1-threshold)*w 即出场
+        """
         x1, y1, x2, y2 = bbox
+        t = self.exit_leading_edge_threshold
         if self.exit_direction == 'bottom':
-            return y1 > frame_height * (1 - self.exit_left_threshold)
+            return y1 > frame_height * t
+        if self.exit_direction == 'right':
+            return x2 > frame_width * t
         # 默认左侧出场
-        return x2 < frame_width * self.exit_left_threshold
+        return x1 < frame_width * (1 - t)
 
     def get_active_records(self):
         return [r for r in self.records.values() if r.exit_time is None]
@@ -738,8 +994,8 @@ log("=" * 70)
 log("车辆清洗检测 V3 - 实时模式（集成HTTP上报，免登录）")
 log(f"Project: {PROJECT_NAME}, Device ID: {DEVICE_ID}")
 log(f"Exit Direction: {EXIT_DIRECTION}")
-log(f"Report URL: {REPORT_URL}, PID: {REPORT_PID}")
-log(f"Report Enabled: {ENABLE_REPORT}")
+log(f"Primary Report URL: {REPORT_URL}, PID: {REPORT_PID}, Enabled: {ENABLE_REPORT}")
+log(f"Shznjz Report URL: {REPORT_2_API_URL}, Device ID: {REPORT_2_DEVICE_ID}, Enabled: {ENABLE_REPORT_2}")
 log(f"Stream Enabled: {ENABLE_STREAMING}")
 if ENABLE_STREAMING:
     log(f"Stream URL: {STREAM_OUTPUT_URL}")
@@ -854,24 +1110,46 @@ try:
     )
     log(f"  Report client OK (no login)")
 
+    # 初始化第二平台上报客户端（上海智能建筑）
+    report_client_2 = ShznjzReportClient(
+        device_id=REPORT_2_DEVICE_ID,
+        login_url=REPORT_2_LOGIN_URL,
+        api_url=REPORT_2_API_URL,
+        login=REPORT_2_LOGIN,
+        pwd=REPORT_2_PWD,
+        enable=ENABLE_REPORT_2,
+        invert_iswash=REPORT_2_INVERT_ISWASH
+    )
+    log(f"  Shznjz report client OK (login first)")
+
+    report_clients = [c for c in [report_client, report_client_2] if c is not None]
+
     entry_exit_mgr = EntryExitManager(
         wash_stop_time=WASH_STOP_TIME,
         exit_wait_time=EXIT_WAIT_TIME,
         exit_left_threshold=EXIT_EDGE_THRESHOLD,
         wash_zone=WASH_ZONE,
         plate_merge_threshold=PLATE_MERGE_THRESHOLD,
-        report_client=report_client,
-        exit_direction=EXIT_DIRECTION
+        report_client=report_clients,
+        exit_direction=EXIT_DIRECTION,
+        exit_leading_edge_threshold=EXIT_LEADING_EDGE_THRESHOLD,
+        min_dwell_time=MIN_DWELL_TIME
     )
-    log(f"  Entry/Exit: direction={EXIT_DIRECTION}, exit_wait={EXIT_WAIT_TIME}s, wash_stop={WASH_STOP_TIME}s, plate_merge={PLATE_MERGE_THRESHOLD} (with report)")
+    log(f"  Entry/Exit: direction={EXIT_DIRECTION}, leading_edge={EXIT_LEADING_EDGE_THRESHOLD}, "
+        f"exit_wait={EXIT_WAIT_TIME}s, min_dwell={MIN_DWELL_TIME}s, wash_stop={WASH_STOP_TIME}s, "
+        f"plate_merge={PLATE_MERGE_THRESHOLD} (with {len(report_clients)} report clients)")
 
     vehicle_tracker = VehicleTracker(
         iou_threshold=0.3,
         max_miss_frames=5,
         exit_left_threshold=EXIT_EDGE_THRESHOLD,
-        exit_direction=EXIT_DIRECTION
+        exit_wait_time=EXIT_WAIT_TIME,
+        exit_direction=EXIT_DIRECTION,
+        exit_leading_edge_threshold=EXIT_LEADING_EDGE_THRESHOLD,
+        min_dwell_time=MIN_DWELL_TIME,
     )
-    log(f"  Vehicle Tracker: IOU=0.3, max_miss=5 frames, exit_direction={EXIT_DIRECTION}")
+    log(f"  Vehicle Tracker: IOU=0.3, max_miss=5 frames, direction={EXIT_DIRECTION}, "
+        f"leading_edge={EXIT_LEADING_EDGE_THRESHOLD}, exit_wait={EXIT_WAIT_TIME}s, min_dwell={MIN_DWELL_TIME}s")
 
     db_file = cfg('db_path', default=f'vehicle_wash_{DEVICE_ID}.db')
     db_config = {
@@ -886,8 +1164,8 @@ try:
             if db_path not in sys.path:
                 sys.path.insert(0, db_path)
             from vehicle_wash_db import VehicleWashDB
-            # 修改数据库路径为相对 organized 目录
-            db_config['db_path'] = str(Path(__file__).parent.parent / 'vehicle_wash.db')
+            # 使用配置中的数据库路径（支持每个项目独立数据库）
+            db_config['db_path'] = str(Path(__file__).parent.parent / db_config['db_path'])
             db = VehicleWashDB(db_config)
             entry_exit_mgr.set_db(db)
             log("  SQLite database connected")
@@ -1222,25 +1500,31 @@ def plate_detection_thread():
                 if track.plate_text and track.plate_text in entry_exit_mgr.records:
                     record = entry_exit_mgr.records[track.plate_text]
                     if record.exit_time is None:
-                        # 标记出场
+                        # 增加最短在场时间校验，避免车辆刚进即出
                         from datetime import datetime
-                        record.exit_time = datetime.now()
-                        record.dwell_time = (record.exit_time - record.entry_time).total_seconds()
+                        now = datetime.now()
+                        dwell_time = (now - record.entry_time).total_seconds()
+                        if dwell_time < entry_exit_mgr.min_dwell_time:
+                            continue
+                        # 标记出场
+                        record.exit_time = now
+                        record.dwell_time = dwell_time
                         record.exit_frame = entry_exit_mgr.current_frame.copy() if entry_exit_mgr.current_frame is not None else None
                         entry_exit_mgr.total_exits += 1
                         if record.is_washed:
                             entry_exit_mgr.washed_count += 1
                         entry_exit_mgr.exited_plates[track.plate_text] = record.exit_time
-                        log(f"★ 车辆出场(跟踪): 车牌={track.plate_text}, 跟踪ID={track.track_id}")
+                        log(f"★ 车辆出场(跟踪): 车牌={track.plate_text}, 跟踪ID={track.track_id}, 停留={dwell_time:.0f}秒")
                         # 跟踪器出场也上报
-                        if report_client and record.exit_frame is not None:
-                            report_client.report(
-                                license_plate=track.plate_text,
-                                inouttype=1,
-                                iswash=1 if record.is_washed else 0,
-                                frame=record.exit_frame,
-                                datatype=0
-                            )
+                        if record.exit_frame is not None:
+                            for client in report_clients:
+                                client.report(
+                                    license_plate=track.plate_text,
+                                    inouttype=1,
+                                    iswash=1 if record.is_washed else 0,
+                                    frame=record.exit_frame,
+                                    datatype=0
+                                )
                             record.exit_frame = None
 
             entry_exit_mgr.check_missing_vehicles(confirmed_plates_this_frame, frame.shape)
@@ -1362,13 +1646,19 @@ def result_processing_thread():
             cv2.putText(result_frame, "WASH ZONE", (zx1 + 5, zy1 + 25),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
 
+            t = entry_exit_mgr.exit_leading_edge_threshold
             if entry_exit_mgr.exit_direction == 'bottom':
-                exit_y = int(h * (1 - entry_exit_mgr.exit_left_threshold))
+                exit_y = int(h * t)
                 cv2.line(result_frame, (0, exit_y), (w, exit_y), (0, 0, 255), 2)
                 cv2.putText(result_frame, "EXIT", (w - 80, h - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+            elif entry_exit_mgr.exit_direction == 'right':
+                exit_x = int(w * t)
+                cv2.line(result_frame, (exit_x, 0), (exit_x, h), (0, 0, 255), 2)
+                cv2.putText(result_frame, "EXIT", (w - 80, h - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
             else:
-                exit_x = int(w * entry_exit_mgr.exit_left_threshold)
+                exit_x = int(w * (1 - t))
                 cv2.line(result_frame, (exit_x, 0), (exit_x, h), (0, 0, 255), 2)
                 cv2.putText(result_frame, "EXIT", (5, h - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
@@ -1493,9 +1783,13 @@ def result_processing_thread():
                 f"Washed: {mgr_stats['washed_count']}")
 
             # 上报统计
-            if ENABLE_REPORT:
-                rpt_stats = report_client.get_stats()
-                log(f"[Report] 成功:{rpt_stats['success']} 失败:{rpt_stats['fail']}")
+            if report_clients:
+                stats_parts = []
+                for client in report_clients:
+                    rpt_stats = client.get_stats()
+                    label = "Shznjz" if isinstance(client, ShznjzReportClient) else "Primary"
+                    stats_parts.append(f"{label}:成功{rpt_stats['success']}/失败{rpt_stats['fail']}")
+                log(f"[Report] {' | '.join(stats_parts)}")
 
             # 推流统计
             if stream_publisher is not None:
@@ -1589,8 +1883,9 @@ if stream_publisher is not None:
 if db is not None:
     db.close()
 
-if report_client is not None:
-    report_client.close()
+for client in report_clients:
+    if client is not None:
+        client.close()
 
 # 强制关闭所有OpenCV窗口
 cv2.destroyAllWindows()
@@ -1666,12 +1961,12 @@ log(f"  Washed: {mgr_stats['washed_count']}")
 log(f"  Wash rate: {mgr_stats['wash_rate']:.1%}")
 log(f"  Active vehicles: {mgr_stats['active_vehicles']}")
 
-if ENABLE_REPORT:
-    rpt_stats = report_client.get_stats()
+if report_clients:
     log(f"\nHTTP Report Statistics:")
-    log(f"  Success: {rpt_stats['success']}")
-    log(f"  Fail: {rpt_stats['fail']}")
-    log(f"  Total: {rpt_stats['total']}")
+    for client in report_clients:
+        rpt_stats = client.get_stats()
+        label = "Shznjz" if isinstance(client, ShznjzReportClient) else "Primary"
+        log(f"  [{label}] Success: {rpt_stats['success']}, Fail: {rpt_stats['fail']}, Total: {rpt_stats['total']}")
 
 if entry_exit_mgr.get_completed_records():
     log(f"\nCompleted Records:")

@@ -30,6 +30,11 @@ PROJECTS = [
         'config': 'config/project_JUNHE_CHENJIA_02.yaml',
         'display': False,
     },
+    {
+        'name': 'JUNHE_BAOLI_01',
+        'config': 'config/project_JUNHE_BAOLI_01.yaml',
+        'display': False,
+    },
 ]
 
 MAIN_SCRIPT = Path(__file__).parent / 'test_full_video_auto_login-v1.0.py'

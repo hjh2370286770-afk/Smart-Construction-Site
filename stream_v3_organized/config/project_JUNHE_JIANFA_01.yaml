@@ -1,15 +1,15 @@
 # 项目配置：JUNHE_CHENJIA_02（新工地）
-project_name: "JUNHE_CHENJIA_02"
-device_id: "JUNHE_CHENJIA_02_01"
+project_name: "JUNHE_JIANFA_01"
+device_id: "JUNHE_JIANFA_01"
 
 # 视频源（萤石云 RTMP 拉流）
-video_path: "rtmp://rtmp05open.ys7.com:1935/v3/openlive/BK7223522_2_1?expire=1812853518&id=987664298274783232&t=80e52ac89e4749c2788db57918b956892e5d7e4755bc06ab8f5a6a365aa2fd7a&ev=101"
+video_path: "rtmp://rtmp05open.ys7.com:1935/v3/openlive/BW0865849_2_1?expire=1817197828&id=1005885654661386240&t=fb2c97e514dfdf7fab42f6d5b1223d60c25dfe5354bfaa49fad507620ed40b0e&ev=101"
 
 # 上报平台（原平台）
 report_url: "http://47.94.205.19:19091/api/addRecord"
 oss_upload_url: "http://47.94.205.19:9981/api/upload"
 enable_report: true
-report_pid: 9
+report_pid: 12
 
 # 第二上报平台（上海智能建筑）
 enable_report_2: true
@@ -17,12 +17,12 @@ report_2_login_url: "https://api.shznjz.cn/api/Login"
 report_2_api_url: "https://api.shznjz.cn/api/AddVehicleManage"
 report_2_login: "shebeituisong"
 report_2_pwd: "rh@123"
-report_2_device_id: "JUNHE_CHENJIA_02_01"
+report_2_device_id: "JUNHE_JIANFA_01"
 report_2_invert_iswash: true
 
 # 推流输出（MediaMTX RTMP）
 enable_streaming: true
-stream_output_url: "rtmp://121.199.7.83:1935/live/chengjia_wash"
+stream_output_url: "rtmp://121.199.7.83:1935/live/jianfa_wash"
 stream_width: 1280
 stream_height: 720
 stream_fps: 25
@@ -45,9 +45,9 @@ plate_merge_threshold: 0.60
 
 # 数据库与日志（每个项目独立，避免多实例冲突）
 db_enabled: true
-db_path: "vehicle_wash_JUNHE_CHENJIA_02_01.db"
+db_path: "vehicle_wash_JUNHE_JIANFA_01.db"
 db_table_name: "vehicle_wash_records"
-log_file: "full_video_test_v3_report_JUNHE_CHENJIA_02_01.log"
+log_file: "full_video_test_v3_report_JUNHE_JIANFA_01.log"
 
 # 显示窗口（多实例同时运行时建议关闭）
 no_display: true

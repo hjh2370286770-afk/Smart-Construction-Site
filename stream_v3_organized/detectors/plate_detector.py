@@ -82,7 +82,13 @@ class PlateDetector:
             logger.info(f"加载车牌检测模型: {self.detect_model_path}")
             self.yolo_model = YOLO(str(self.detect_model_path))
             self.yolo_model.to(self.device)
-            
+            # 在单线程初始化阶段先执行 fuse，避免多线程并发推理时触发 fuse 产生竞态（AttributeError: bn）
+            try:
+                self.yolo_model.fuse()
+                logger.info("车牌检测模型已预融合")
+            except Exception as e:
+                logger.warning(f"车牌检测模型预融合失败（不影响后续使用）: {e}")
+
             # 加载识别模型
             logger.info(f"加载车牌识别模型: {self.rec_model_path}")
             self.rec_model = init_model(self.device, str(self.rec_model_path), is_color=True)

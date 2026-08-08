@@ -5,11 +5,20 @@ device_id: "JUNHE_106_01"
 # 视频源（萤石云 RTMP 拉流）
 video_path: "rtmp://rtmp05open.ys7.com:1935/v3/openlive/BK1948130_2_1?expire=1809950641&id=975488750482890752&t=69761f54257288b0df5f7db26a58a8996a6501f7cf1a8475ee42bd6f3ef1f42c&ev=101"
 
-# 上报平台
+# 上报平台（原平台）
 report_url: "http://47.94.205.19:8080/api/addRecord"
 oss_upload_url: "http://47.94.205.19:9981/api/upload"
 enable_report: true
 report_pid: 1
+
+# 第二上报平台（上海智能建筑）
+enable_report_2: true
+report_2_login_url: "https://api.shznjz.cn/api/Login"
+report_2_api_url: "https://api.shznjz.cn/api/AddVehicleManage"
+report_2_login: "shebeituisong"
+report_2_pwd: "rh@123"
+report_2_device_id: "JUNHE_106_01"
+report_2_invert_iswash: true
 
 # 推流输出
 enable_streaming: true
@@ -22,8 +31,10 @@ stream_queue_size: 20
 
 # 进出场与清洗
 exit_direction: "left"        # 车辆从画面左侧离场
-exit_edge_threshold: 0.05
-exit_wait_time: 60
+exit_edge_threshold: 0.05     # 兼容旧参数，新逻辑中不再使用
+exit_leading_edge_threshold: 0.80  # 检测框前缘越线阈值：bottom 用 y1，right 用 x2，left 用 x1
+exit_wait_time: 3             # 前缘持续越线多久才判定出场（秒），前缘逻辑建议 2~5 秒
+min_dwell_time: 5             # 车辆进场后最短在场时间（秒），防止同时进出场
 wash_stop_time: 180
 wash_zone:
   x1: 0.1

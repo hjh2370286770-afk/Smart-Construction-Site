@@ -63,6 +63,12 @@ class VehicleWashDetector(BaseDetector):
             model_path = self.config.get('path', str(Path(__file__).parent.parent / 'models' / 'yolov8n.pt'))
             logger.info(f"加载车辆检测模型: {model_path}")
             self.model = YOLO(model_path)
+            # 单线程初始化阶段预融合，避免后续多线程并发推理触发 fuse 竞态
+            try:
+                self.model.fuse()
+                logger.info("车辆检测模型已预融合")
+            except Exception as e:
+                logger.warning(f"车辆检测模型预融合失败（不影响后续使用）: {e}")
 
             if self.device == 'auto':
                 import torch
